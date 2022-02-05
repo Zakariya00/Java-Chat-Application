@@ -1,1 +1,1 @@
-#The almost-finished GUI Client-Server chat application.
+# The almost-finished GUI Client-Server chat application.
