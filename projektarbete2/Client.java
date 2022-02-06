@@ -2,8 +2,12 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
+//the Client handles the input and output streams.
+
+
 public class Client implements Runnable
 {
+
 
     private String username;
     private Socket socket;
@@ -60,11 +64,14 @@ public class Client implements Runnable
     public void run() {
 
         try{
+
             socket = new Socket("localhost",1234);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
+
         } catch (IOException e){
             closeConnection();
+
         }
 
     }
