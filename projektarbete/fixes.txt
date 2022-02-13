@@ -1,0 +1,62 @@
+NOT SOLVED ❌
+1. Display failed to connect to server in connect window if server is not running.
+
+SOLVED ✅
+2. Multiple clients - thread
+
+NOT SOLVED ❌
+3. Display messages to all clients directly when one client writes a message.
+-right now, each client only reads the messages array when it sends its own message. we want all clients to read the message array.
+
+
+SOLVED ✅
+4. User x has disconnected/left the chat
+- what does the run method do?
+
+SOLVED ✅
+5. Can't connect with new client once user disconnects. It's because the connection handler becomes null so its like the server is not running for that client.
+
+Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException: Cannot invoke "java.io.ObjectOutputStream.writeObject(Object)" because "this.objectOutputStream" is null
+its the message u get when the server is not running. why does this happen?
+
+NOT SOLVED ❌
+6. Key adapter. When you press Enter on keyboard, send message
+
+NOT SOLVED ❌
+7. Use the other thread structure for your program if it is more suitable. (wittcode)
+
+NOT SOLVED ❌
+8. Make server send message to all clients that it will shutdown if the server closes.
+
+NOT SOLVED ❌
+9. Server GUI does not show up. It should show up.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
