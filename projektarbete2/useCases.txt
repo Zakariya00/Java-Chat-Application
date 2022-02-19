@@ -1,0 +1,47 @@
+USE CASES
+
+-reformulate use cases
+
+1. server GUI - list of connected users, connection history- "user x has connected", server - close server button - z
+
+2. timestamp on each message - m
+
+3. file - menu : "save chat log" vilket sparar hela klientens chatt som text fil, help - som förklarar programmet - r, v
+
+4. ljud när man skickar meddelande, när man får meddelande - olika ljud - r, v
+
+5. broadcast and update message for all clients - all
+
+
+6. do you wish to close the server?
+7. do you wish to close the client?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
