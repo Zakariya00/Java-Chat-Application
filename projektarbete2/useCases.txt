@@ -37,7 +37,9 @@ NOT DONE
 
 12. skapa en server shutdown meddelande funktion.
 
+13. Help describes the chat
 
+14. Edit - edit username, clear all history, edit chat color, 
 
 
 
