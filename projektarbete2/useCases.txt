@@ -21,27 +21,29 @@ DONE
 5. broadcast and update message for all clients - all
 
 NOT DONE
-6. do you wish to close the server?
+6. do you wish to close the server?  SERVER GUI -- z
 
 NOT DONE
-7. do you wish to close the client?
+7. do you wish to close the client?, JOPTION pane "Do you wish to close the server" YES ---> close client  -- v
 
 NOT DONE
-8. Failed to connect to server- no transition if server is not running. JOption "failed to connect to server - server not running"
+8. Failed to connect to server- no transition if server is not running. JOption "failed to connect to server - server not running" - M
 
-9. Client can see who is connected to the server. Server can also see list of users.
+9. Client can see who is connected to the server. - M
 
-10. Server shutdown button.
+9.1: Server can also see list of users. - Z
 
-11. If server shuts down, all client windows need to close. Write to all clients - Server has shut down.
+10. Server shutdown button. -Z
 
-12. skapa en server shutdown meddelande funktion.
+11. If server shuts down, all client windows need to close. Write to all clients - Server has shut down. -Z
 
-13. Help describes the chat
+12. skapa en server shutdown meddelande funktion. -Z
 
-14. Edit - edit username, clear all history, edit chat color, enable/disable mute
+13. Help describes the chat - R, V
 
+14. Edit - edit username, clear all history, edit chat color - R, V
 
+15. Invalid username- "blank space cant connect" - M
 
 förslag: se bara det som skrivits sen client joinat själv.
 
