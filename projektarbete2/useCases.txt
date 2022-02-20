@@ -39,7 +39,7 @@ NOT DONE
 
 13. Help describes the chat
 
-14. Edit - edit username, clear all history, edit chat color, 
+14. Edit - edit username, clear all history, edit chat color, enable/disable mute
 
 
 
