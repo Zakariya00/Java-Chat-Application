@@ -72,7 +72,7 @@ public class ClientController extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                clientModel.sendMessage(clientModel.getUsername() + " disconnected from the server");
+                clientModel.sendMessage("User "+clientModel.getUsername() + " disconnected from the server");
 
             }
 
