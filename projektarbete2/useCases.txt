@@ -1,3 +1,5 @@
+
+
 USE CASES:
 
 In software and systems engineering, the phrase use case is a polyseme with two senses:
@@ -44,6 +46,11 @@ NOT DONE
 14. Edit - edit username, clear all history, edit chat color - R, V
 
 15. Invalid username- "blank space cant connect" - M
+
+SPARA CHAT LOG:
+
+-användaren kan spara sin chat log som en text fil
+-servern kan spara sin chat log och återuppta den, så att om man stänger ner servern och startar om den kommer den gamla chatten upp igen.
 
 förslag: se bara det som skrivits sen client joinat själv.
 

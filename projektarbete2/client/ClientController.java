@@ -46,8 +46,10 @@ public class ClientController extends JFrame {
                     clientModel.sendMessage("User " + clientView.formattedTextField.getText() + " has connected to the server");
                     setTitle("Client - " + clientModel.getUsername());
                 } else {
+
                     //play a sound here - r
                     clientView.connectionError.setText("Please enter a valid username.");
+
                 }
 
 
