@@ -21,6 +21,7 @@ public class ClientView {
     public JTextField messageField;
     public JTextArea textArea;
     public JButton sendMessageButton;
+    protected JLabel connectionError;
 
     //takes a clientModel(which stores all messages for a client) and displays it
     private ClientModel clientModel;

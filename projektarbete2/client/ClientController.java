@@ -36,18 +36,20 @@ public class ClientController extends JFrame {
         clientView.connectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cl.show(clientView.mainPanel, "Card2");
+
 
                 //write to the server when the connect button is pressed
-                clientModel.setUsername(clientView.formattedTextField.getText());
+                if (!clientView.formattedTextField.getText().equals("")) {
+                    cl.show(clientView.mainPanel, "Card2");
+                    clientModel.setUsername(clientView.formattedTextField.getText());
+                    clientModel.sendUserName(); // Connect button sends username to Server ---------------------------------
+                    clientModel.sendMessage("User " + clientView.formattedTextField.getText() + " has connected to the server");
+                    setTitle("Client - " + clientModel.getUsername());
+                } else {
+                    //play a sound here - r
+                    clientView.connectionError.setText("Please enter a valid username.");
+                }
 
-                clientModel.sendUserName(); // Connect button sends username to Server ---------------------------------
-
-                clientModel.sendMessage("User " + clientView.formattedTextField.getText() + " has connected to the server");
-
-
-
-                setTitle("client - "+clientModel.getUsername());
 
 
             }
