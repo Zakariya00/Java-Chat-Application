@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import client.*;
-import server.ServerModel;
 
 //handles button presses and things that affect the model.
 //it should not display messages in reality, that should be handled by the view.
@@ -43,7 +40,11 @@ public class ClientController extends JFrame {
 
                 //write to the server when the connect button is pressed
                 clientModel.setUsername(clientView.formattedTextField.getText());
+
+                clientModel.sendUserName(); // Connect button sends username to Server ---------------------------------
+
                 clientModel.sendMessage("User " + clientView.formattedTextField.getText() + " has connected to the server");
+
 
 
                 setTitle("client - "+clientModel.getUsername());

@@ -1,6 +1,8 @@
 package server;
 
 import message.Packet;
+import user.ClientUserName; // -----------------------------------------------------------------------------------------
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,6 +16,8 @@ public class ClientHandler implements Runnable {
     private Socket client;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
+
+    private String username; // client instance being handled's userName -----------------------------------------------
 
     //allows the server to send messages to multiple clients. Each connection handler handles one client.
     private static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
@@ -31,13 +35,21 @@ public class ClientHandler implements Runnable {
     }
 
 
+
+    // returns client connections
+    public ArrayList<ClientHandler> getClientConnections() {return new ArrayList<>(clientHandlers);}
+
+
+
     public void closeConnection() {
         try {
             if (client != null) {
                 client.close();
+                ServerModel.onlineUsers.remove(username); // User removed from Online users list -----------------------
             }
             if (objectOutputStream != null) {
                 objectOutputStream.close();
+
             }
             if (objectInputStream != null) {
                 objectInputStream.close();
@@ -58,8 +70,37 @@ public class ClientHandler implements Runnable {
     }
 
 
+    //Server shutdown broadcast ----------------------------------------------------------------------------------------
+    public static void serverbroadcastMessage(ArrayList<String> chat) {
+        chat.add("Server Has Been Shutdown");
+        for (ClientHandler clientHandler : clientHandlers){
+            try {
+                clientHandler.objectOutputStream.writeObject(chat);
+            } catch(IOException e){
+                //do nothing
+            }
+        }
+    }
+
+
     @Override
     public void run() {
+
+        // Receive Client userName and add to Online users array -------------------------------------------------------
+        try {
+            ClientUserName userClient = (ClientUserName) objectInputStream.readObject();
+            System.out.println("Server received from client: " + userClient.userName);
+            this.username = userClient.userName;
+
+            ServerModel.onlineUsers.add(userClient.userName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
 
 
         while (client.isConnected()) {

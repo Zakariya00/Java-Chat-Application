@@ -1,11 +1,15 @@
 package client;
 
-import java.io.*;
+import message.Packet;
+import user.ClientUserName; // ----------------------------------------------------------------------------------------
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import message.Packet;
 
 
 //the Client handles the input and output streams. It stores the messages to send.
@@ -55,11 +59,22 @@ public class ClientModel {
     }
 
 
+    //Send userName to Server ------------------------------------------------------------------------------------------
+    public void sendUserName() {
+        try {
+            objectOutputStream.writeObject(new ClientUserName(getUsername()));
+            objectOutputStream.flush();
+        } catch (IOException e){
+            //do nothing
+        }
 
+    }
+
+
+    // GET and SET Methods for UserName --------------------------------------------------------------------------------
     public void setUsername(String username){
         this.username = username;
     }
-
     public String getUsername(){
         return username;
     }
