@@ -58,7 +58,7 @@
           <component id="26f91" class="javax.swing.JTextArea" binding="textArea2">
             <constraints/>
             <properties>
-              <font size="16" style="1"/>
+              <font size="16"/>
             </properties>
           </component>
         </children>

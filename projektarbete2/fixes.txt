@@ -38,18 +38,62 @@ Now, it does not send chatlog all the time, only the first time the user connect
 but we need to find a way to broadcast the individual messages.
 after they have been broadcasted, we need to find a way to make all clients read and display them.
 
-NOT SOLVED ❌
+SOLVED ✅
 11.
 ServerView should show connected users and connection log.
 
+NOT SOLVED ❌
 12.
 Fixa Exception handling för varje IOException. Skapa funktion closeConnection -r
 
+
 QUESTION:
-1. Vart finns save knappen på client window?
+1. Vart finns save knappen på client window?, Commita och pusha
 2. Z-fixa client window user list.
 3. Vilken del av koden hanterar user-list, varför är den så stor?
 4. fixa så att den inte blinkar när serverns stängs ner.
+5. Inga publika variabler
+6. Varför kopior av olika variabler - Servermodel message och messageCopy?
+7. Fixa GIT på Intellij, clona projektet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

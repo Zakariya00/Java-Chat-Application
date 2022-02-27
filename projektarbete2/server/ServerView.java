@@ -21,9 +21,10 @@ public class ServerView {
         textArea2.setLayout(new GridLayout(0,1));
         //textArea2.setEditable(false);
 
-
     }
 
+
+    //hello
 
     //Displays Client messages on Server GUI ---------------------------------------------------------------------------
     public void displayMessages() {

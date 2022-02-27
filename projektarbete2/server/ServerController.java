@@ -93,6 +93,9 @@ public class ServerController extends JFrame {
                        serverView.displayUsers();
 
                        // add function to send Updated Online user list to clients
+
+                       //function here?
+
                    }
 
                     if (serverModel.getChatLogCopy().size() != serverModel.getChatLog().size()) {

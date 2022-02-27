@@ -10,6 +10,8 @@ public class ChatHistory {
         clientmodel = new ClientModel();
     }
 
+
+
 /*
     public static void main (String[] args) {
 
@@ -22,6 +24,7 @@ public class ChatHistory {
 
     }
 */
+
 
     public void SaveChatLog() throws IOException {
 
