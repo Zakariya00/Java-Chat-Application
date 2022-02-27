@@ -14,6 +14,8 @@ public class ServerModel{
 
     //stores all chat history
     public static ArrayList<String> messages = new ArrayList<String>();
+
+    //Q: Vad används copy för? Inga publika variabler.
     public static ArrayList<String> messagesCopy = new ArrayList<String>(); // -----------------------------------------
 
     public static ArrayList<String> onlineUsers = new ArrayList<String>(); // ------------------------------------------
@@ -36,6 +38,8 @@ public class ServerModel{
 
     // getters for chat and connection log
     public ArrayList<String> getChatLog() {return new ArrayList<>(messages);} //----------------------------------------
+
+    //Q: vad används copy för?
     public ArrayList<String> getChatLogCopy() {return new ArrayList<>(messagesCopy);}
 
     public ArrayList<String> getOnlineUsers() {return new ArrayList<>(onlineUsers);} // --------------------------------

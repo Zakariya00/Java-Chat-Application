@@ -42,11 +42,14 @@ NOT SOLVED ❌
 11.
 ServerView should show connected users and connection log.
 
+12.
+Fixa Exception handling för varje IOException. Skapa funktion closeConnection -r
 
-
-
-
-
+QUESTION:
+1. Vart finns save knappen på client window?
+2. Z-fixa client window user list.
+3. Vilken del av koden hanterar user-list, varför är den så stor?
+4. fixa så att den inte blinkar när serverns stängs ner.
 
 
 

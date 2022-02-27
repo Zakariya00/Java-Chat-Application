@@ -45,7 +45,7 @@ public class ServerView {
         textArea2.setText("");
 
         for (String user : users) {
-          textArea2.append("<>  " +user + "\n\n");
+          textArea2.append(" "+user + "\n");
         }
     }
 
