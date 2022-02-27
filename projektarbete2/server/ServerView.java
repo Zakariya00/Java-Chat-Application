@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ServerView {
     public JPanel serverPanel;
     private JTextArea textArea; // Chat area
-    public JButton button; // Server Shutdown button
+    protected JButton button; // Server Shutdown button
     private JTextArea textArea2; // Online users area
     private JLabel connectionLog;
 
@@ -24,7 +24,8 @@ public class ServerView {
     }
 
 
-    //hello
+    //hello comment added
+
 
     //Displays Client messages on Server GUI ---------------------------------------------------------------------------
     public void displayMessages() {

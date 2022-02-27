@@ -54,7 +54,8 @@ SPARA CHAT LOG:
 
 förslag: se bara det som skrivits sen client joinat själv.
 
-hey
+
+//hello
 
 
 
