@@ -67,7 +67,7 @@ public class ClientController extends JFrame {
                 clientModel.sendMessage(clientModel.getUsername() + ": " + clientView.messageField.getText());
                 clientView.messageField.setText("");
 
-System.out.println("hi");
+
 
             }
         });

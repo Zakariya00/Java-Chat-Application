@@ -28,6 +28,7 @@ public class ClientView {
 
     public ClientView(ClientModel clientModel){
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
         this.clientModel = clientModel;
     }
 

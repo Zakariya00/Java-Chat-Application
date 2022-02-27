@@ -21,6 +21,7 @@ public class ServerView {
     public ServerView(ServerModel serverModel){
         this.serverModel = serverModel;
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
         textArea2.setEditable(false);
         textArea2.setLayout(new GridLayout(0,1));
         //textArea2.setEditable(false);
