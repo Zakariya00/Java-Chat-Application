@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 //Receives the messages from each client and stores all the messages in an arraylist and sends them to the clients.
@@ -13,15 +14,15 @@ import java.util.ArrayList;
 public class ServerModel{
 
     //stores all chat history
-    public static ArrayList<String> messages = new ArrayList<String>();
+    public static List<String> messages = new ArrayList<String>();
 
     //Q: Vad används copy för? Inga publika variabler.
-    public static ArrayList<String> messagesCopy = new ArrayList<String>(); // -----------------------------------------
+    public static List<String> messagesCopy = new ArrayList<String>(); // -----------------------------------------
 
-    public static ArrayList<String> onlineUsers = new ArrayList<String>(); // ------------------------------------------
-    public static ArrayList<String> onlineUsersCopy = new ArrayList<String>(); // --------------------------------------
+    public static List<String> onlineUsers = new ArrayList<String>(); // ------------------------------------------
+    public static List<String> onlineUsersCopy = new ArrayList<String>(); // --------------------------------------
 
-    public static ArrayList<String> connectionLog = new ArrayList<String>();
+    public static List<String> connectionLog = new ArrayList<String>();
 
 
     //accepts client connection

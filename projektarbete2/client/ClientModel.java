@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 
 //the Client handles the input and output streams. It stores the messages to send.
