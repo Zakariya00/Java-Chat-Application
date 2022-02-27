@@ -38,16 +38,18 @@ public class ClientController extends JFrame {
 
 
                 //write to the server when the connect button is pressed
-                if (!clientView.formattedTextField.getText().equals("")) {
+                if (clientView.formattedTextField.getText().equals("")) {
+                    //play a sound here - r
+                    clientView.connectionError.setText("Please enter a valid username.");
+                } else if (clientView.formattedTextField.getText().length()>15){
+                    clientView.connectionError.setText("Username can't be longer than 15 characters");
+                } else {
+
                     cl.show(clientView.mainPanel, "Card2");
                     clientModel.setUsername(clientView.formattedTextField.getText());
                     clientModel.sendUserName(); // Connect button sends username to Server ---------------------------------
                     clientModel.sendMessage("User " + clientView.formattedTextField.getText() + " has connected to the server");
                     setTitle("Client - " + clientModel.getUsername());
-                } else {
-
-                    //play a sound here - r
-                    clientView.connectionError.setText("Please enter a valid username.");
 
                 }
 
