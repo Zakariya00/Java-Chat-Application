@@ -1,5 +1,3 @@
-
-
 USE CASES:
 
 In software and systems engineering, the phrase use case is a polyseme with two senses:
