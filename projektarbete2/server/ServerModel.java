@@ -13,24 +13,13 @@ import java.util.List;
 
 public class ServerModel{
 
-    //stores all chat history
-    public static List<String> messages = new ArrayList<String>();
-
-    //Q: Vad används copy för? Inga publika variabler.
-    public static List<String> messagesCopy = new ArrayList<String>(); // -----------------------------------------
-
-    public static List<String> onlineUsers = new ArrayList<String>(); // ------------------------------------------
-    public static List<String> onlineUsersCopy = new ArrayList<String>(); // --------------------------------------
-
-    public static List<String> connectionLog = new ArrayList<String>();
-
-    protected static List<String> connectionLog2 = new ArrayList<String>();
-
+    //stores all chat history and USer history
+    private static List<String> messages = new ArrayList<String>();
+    private static List<String> onlineUsers = new ArrayList<String>(); // -------------------------------------
 
     //accepts client connection
     private ServerSocket serverSocket;
     private final int PORT = 1234;
-
 
     public ServerModel(){
         try {
@@ -39,20 +28,15 @@ public class ServerModel{
         }
     }
 
-    // getters for chat and connection log
-    public ArrayList<String> getChatLog() {return new ArrayList<>(messages);} //----------------------------------------
+    // getters for chatlog And OnlineUsers
+    public static ArrayList<String> getChatLog() {return new ArrayList<>(messages);} //-------------------------
+    public static ArrayList<String> getOnlineUsers() {return new ArrayList<>(onlineUsers);} // ----------------
 
-    //Q: vad används copy för?
-    public ArrayList<String> getChatLogCopy() {return new ArrayList<>(messagesCopy);}
+    public static void addMsg(String msg) {messages.add(msg);}
+    public static void removeMsg(String msg) {messages.remove(msg);}
 
-    public ArrayList<String> getOnlineUsers() {return new ArrayList<>(onlineUsers);} // --------------------------------
-    public ArrayList<String> getOnlineUsersCopy() {return new ArrayList<>(onlineUsersCopy);}
-
-    public ArrayList<String> getConnectionLog() {return new ArrayList<>(connectionLog);}
-
-    // Setters for Chatlog and OnlineUsersCopy -------------------------------------------------------------------------
-    public void updateChatLogCopy () { messagesCopy = getChatLog();}
-    public void updateOnlineUsersCopy () {onlineUsersCopy = getOnlineUsers();}
+    public static void addUser(String user) {onlineUsers.add(user);}
+    public static void removeUser(String user) {onlineUsers.remove(user);}
 
 
     //Get port and Ip address
@@ -73,9 +57,8 @@ public class ServerModel{
 
     // Server shutdown Message method ---------------------------------------------------------------------------------
     public void serverShutDown() {
-        ClientHandler.serverbroadcastMessage(getChatLog());
+        ClientHandler.serverbroadcastMessage(getChatLog(), "Server Has Been Shutdown");
     }
-
 
     public void startServer(){
         //always listen for new client connections
