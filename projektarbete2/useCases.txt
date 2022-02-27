@@ -9,43 +9,53 @@ In software and systems engineering, the phrase use case is a polyseme with two 
 
 -reformulate use cases
 
-NOT DONE
+Done
 1. server GUI - list of connected users, connection history- "user x has connected", server - close server button - z
 
-DONE
+Done
 2. timestamp on each message - m
 
+Done
 3. file - menu : "save chat log" vilket sparar hela klientens chatt som text fil, help - som förklarar programmet - r, v
 
-4. ljud när man skickar meddelande, när man får meddelande - olika ljud - r, v
+Not Done
+4. ljud när man skickar meddelande, när man får meddelande - olika ljud, blank user name sound error sound, connect ljud, olika ljud för när man skickar och får meddalnde  - r, v
 
 DONE
 5. broadcast and update message for all clients - all
 
-NOT DONE
+DONE
 6. do you wish to close the server?  SERVER GUI -- z
 
 NOT DONE
-7. do you wish to close the client?, JOPTION pane "Do you wish to close the server" YES ---> close client  -- v
+7. do you wish to close the client?, JOPTION pane "Do you wish to close the server" YES ---> close client  -- z
 
 NOT DONE
 8. Failed to connect to server- no transition if server is not running. JOption "failed to connect to server - server not running" - M
 
+Not done
 9. Client can see who is connected to the server. - M, Z
-
+Done
 9.1: Server can also see list of users. - Z
-
+Done
 10. Server shutdown button. -Z
 
-11. If server shuts down, all client windows need to close. Write to all clients - Server has shut down. -Z
+Done
+11. If server shuts down. Write to all clients - Server has shut down. -Z
 
+Done
 12. skapa en server shutdown meddelande funktion. -Z
 
+Not done
 13. Help describes the chat. It will open a JOPTIONPANE which lists the authors and creation date and version. (see m-chat) - R, V
 
-14. Edit - edit username, clear all history, edit chat color - R, V
+Not done
+14. Edit file  - edit username, edit chat color - R, V
 
+Not done
 15. Invalid username- "blank space cant connect" - M
+
+16.testning- alla
 
 SPARA CHAT LOG:
 
@@ -55,8 +65,7 @@ SPARA CHAT LOG:
 förslag: se bara det som skrivits sen client joinat själv.
 
 
-//hello
-//hi there
+
 
 
 
