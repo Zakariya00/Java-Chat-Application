@@ -24,7 +24,7 @@ public class ServerModel{
 
     public static List<String> connectionLog = new ArrayList<String>();
 
-    public static List<String> connectionLog2 = new ArrayList<String>();
+    protected static List<String> connectionLog2 = new ArrayList<String>();
 
 
     //accepts client connection
