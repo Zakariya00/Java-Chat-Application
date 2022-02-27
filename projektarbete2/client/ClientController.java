@@ -16,8 +16,7 @@ public class ClientController extends JFrame {
     private ClientView clientView;
     private CardLayout cl; //denna layout tillåter att man går från connect window till chat window på ett smidigt sätt
 
-///hhh
-//hhh
+
 
     public ClientController(ClientModel clientModel) {
         super("client");
@@ -66,7 +65,7 @@ public class ClientController extends JFrame {
                 clientModel.sendMessage(clientModel.getUsername() + ": " + clientView.messageField.getText());
                 clientView.messageField.setText("");
 
-
+System.out.println("hi");
 
             }
         });
