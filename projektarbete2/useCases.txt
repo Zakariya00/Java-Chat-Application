@@ -25,7 +25,7 @@ DONE
 DONE
 6. do you wish to close the server?  SERVER GUI -- z
 
-NOT DONE
+DONE
 7. do you wish to close the client?, JOPTION pane "Do you wish to close the server" YES ---> close client  -- z
 
 NOT DONE
@@ -50,8 +50,8 @@ Not done
 Not done
 14. Edit file  - edit username, edit chat color - R, V
 
-Not done
-15. Invalid username- "blank space cant connect" - M
+DONE
+15. Invalid username- "blank space cant connect", "username 2 long error"- M
 
 16.testning- alla
 

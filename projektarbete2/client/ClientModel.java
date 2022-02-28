@@ -25,13 +25,10 @@ public class ClientModel {
 
 
     public ClientModel() {
-
         try {
-
-            socket = new Socket("localhost",1234);
+            socket = new Socket("localhost", 1234);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
-
         } catch (IOException e){
             closeConnection();
         }
@@ -42,7 +39,9 @@ public class ClientModel {
         return new ArrayList<>(chatLog);
     }
 
-
+    public Socket getSocket(){
+        return socket;
+    }
 
     //skickar ett meddelande till servern med timestamp på meddelandet
     public void sendMessage(String message) {

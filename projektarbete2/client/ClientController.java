@@ -35,10 +35,11 @@ public class ClientController extends JFrame {
         clientView.connectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
                 //write to the server when the connect button is pressed
-                if (clientView.formattedTextField.getText().equals("")) {
+
+                if (clientModel.getSocket()==null){
+                    clientView.connectionError.setText("Server is not running.");
+                } else if (clientView.formattedTextField.getText().equals("")) {
                     //play a sound here - r
                     clientView.connectionError.setText("Please enter a valid username.");
                 } else if (clientView.formattedTextField.getText().length()>15){
@@ -80,9 +81,13 @@ public class ClientController extends JFrame {
                 int input = JOptionPane.showConfirmDialog(null,"Are you sure you want to close the client?");
                 if(input == JOptionPane.YES_NO_OPTION) {
 
-                    clientModel.sendMessage("User "+ clientModel.getUsername() + " disconnected from the server");
+                    //this allows you to close the window if server is not running. it wont sendMessage.
+                    if (clientModel.getSocket()!=null) {
+                        clientModel.sendMessage("User " + clientModel.getUsername() + " disconnected from the server");
+                    }
+
                     System.out.println("client shutdown");
-                    dispose();
+                    System.exit(0);
 
                 }
 
@@ -120,6 +125,7 @@ public class ClientController extends JFrame {
         ClientModel clientModel = new ClientModel();
         ClientController clientController = new ClientController(clientModel);
         clientController.listenForMessage();
+
 
     }
 
