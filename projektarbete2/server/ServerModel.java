@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ServerModel{
 
-    //stores all chat history and USer history
+    //stores all chat history and User history
     private static List<String> messages = new ArrayList<String>();
     private static List<String> onlineUsers = new ArrayList<String>(); // -------------------------------------
 

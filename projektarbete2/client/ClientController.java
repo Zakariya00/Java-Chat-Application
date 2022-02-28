@@ -28,7 +28,7 @@ public class ClientController extends JFrame {
 
 
         setSize(500, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
 
 
@@ -77,7 +77,14 @@ public class ClientController extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                clientModel.sendMessage("User "+clientModel.getUsername() + " disconnected from the server");
+                int input = JOptionPane.showConfirmDialog(null,"Are you sure you want to close the client?");
+                if(input == JOptionPane.YES_NO_OPTION) {
+
+                    clientModel.sendMessage("User "+ clientModel.getUsername() + " disconnected from the server");
+                    System.out.println("client shutdown");
+                    dispose();
+
+                }
 
             }
 
