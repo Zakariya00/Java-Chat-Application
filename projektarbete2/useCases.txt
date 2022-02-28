@@ -55,6 +55,8 @@ DONE
 
 16.testning- alla
 
+17. client should not be able to send message longer than 1000 characters?
+
 SPARA CHAT LOG:
 
 -användaren kan spara sin chat log som en text fil

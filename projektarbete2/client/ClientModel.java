@@ -35,6 +35,16 @@ public class ClientModel {
 
     }
 
+    public void connectToServer() {
+        try {
+            socket = new Socket("localhost", 1234);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<String> getChatLog(){
         return new ArrayList<>(chatLog);
     }

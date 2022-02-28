@@ -26,9 +26,12 @@ public class ClientView {
     //takes a clientModel(which stores all messages for a client) and displays it
     private ClientModel clientModel;
 
-    public ClientView(ClientModel clientModel){
+    public ClientView(){
         textArea.setEditable(false);
         textArea.setLineWrap(true);
+    }
+
+    public void setClientModel(ClientModel clientModel){
         this.clientModel = clientModel;
     }
 

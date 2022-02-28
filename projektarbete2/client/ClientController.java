@@ -18,10 +18,12 @@ public class ClientController extends JFrame {
 
 
 
-    public ClientController(ClientModel clientModel) {
+    public ClientController() {
         super("client");
-        this.clientModel = clientModel;
-        this.clientView = new ClientView(clientModel);
+
+        this.clientModel = new ClientModel();
+        this.clientView = new ClientView();
+
         add(clientView.mainPanel);
 
         cl = (CardLayout) clientView.mainPanel.getLayout();
@@ -35,7 +37,16 @@ public class ClientController extends JFrame {
         clientView.connectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //write to the server when the connect button is pressed
+
+                //retry the connection for the clientModel
+                if (clientModel.getSocket() == null){
+                    clientModel.connectToServer();
+                }
+
+                //pass the updated clientModel to the clientView
+                clientView.setClientModel(clientModel);
+
+
 
                 if (clientModel.getSocket()==null){
                     clientView.connectionError.setText("Server is not running.");
@@ -121,9 +132,7 @@ public class ClientController extends JFrame {
     public static void main (String[] args){
 
 
-
-        ClientModel clientModel = new ClientModel();
-        ClientController clientController = new ClientController(clientModel);
+        ClientController clientController = new ClientController();
         clientController.listenForMessage();
 
 
