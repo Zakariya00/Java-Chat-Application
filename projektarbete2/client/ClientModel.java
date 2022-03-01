@@ -21,7 +21,8 @@ public class ClientModel {
     private Socket socket;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
-    private ArrayList<String> chatLog;
+    private List<Packet> chatLog = new ArrayList<Packet>();
+    private List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // ---------
 
 
     public ClientModel() {
@@ -45,12 +46,17 @@ public class ClientModel {
         }
     }
 
-    public ArrayList<String> getChatLog(){
-        return new ArrayList<>(chatLog);
-    }
-
+    //Get and Set methods for private Instance Variables
+    public ArrayList<Packet> getChatLog(){return new ArrayList<>(chatLog); }
+    public ArrayList<ClientUserName> getOnlineUsers() {return new ArrayList<>(onlineUsers); }
     public Socket getSocket(){
         return socket;
+    }
+    public String getUsername(){
+        return username;
+    }
+    public void setUsername(String username){
+        this.username = username;
     }
 
     //skickar ett meddelande till servern med timestamp på meddelandet
@@ -68,7 +74,6 @@ public class ClientModel {
         }
     }
 
-
     //Send userName to Server ------------------------------------------------------------------------------------------
     public void sendUserName() {
         try {
@@ -81,32 +86,15 @@ public class ClientModel {
     }
 
 
-    // GET and SET Methods for UserName --------------------------------------------------------------------------------
-    public void setUsername(String username){
-        this.username = username;
-    }
-    public String getUsername(){
-        return username;
-    }
-
-
-
-    public ArrayList<String> readMessage() {
+    public void readMessage() {
         try {
-            chatLog = (ArrayList<String>) objectInputStream.readObject();
-            System.out.println(chatLog);
+            chatLog = (ArrayList<Packet>) objectInputStream.readObject();
+            System.out.println(chatLog.toString());
 
-            return chatLog;
         } catch (IOException | ClassNotFoundException e){
             //do nothing
         }
-        return new ArrayList<String>();
     }
-
-
-
-
-
 
 
     public void closeConnection() {

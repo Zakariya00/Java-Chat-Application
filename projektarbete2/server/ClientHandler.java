@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ClientHandler implements Runnable {
 
-    private String username; // client instance being handled's userName -----------------------------------------------
+    private ClientUserName username; // client instance being handled's userName -----------------------------------------------
     private Socket client;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
@@ -58,35 +58,49 @@ public class ClientHandler implements Runnable {
     }
 
     //BroadCast function to send messages  --------------------------------------
-    private static void broadcastFunction(ArrayList<String> obj) {
+    private static void broadcastFunction(ArrayList<Packet> obj) {
         for (ClientHandler clientHandler : clientHandlers){
             try {
                 clientHandler.objectOutputStream.writeObject(obj);
+                clientHandler.objectOutputStream.flush();
             } catch(IOException e){
                 //do nothing
             }
         }
+
     }
 
     //Send Chat messages to clients ---------------------------------------------------
-    public void broadcastMessage(ArrayList<String> chat) {
+    private void broadcastMessage(ArrayList<Packet> chat) {
         broadcastFunction(chat);
     }
 
-
-    //Server custom message broadcast ----------------------------------------------------------------------------------------
-    public static void serverbroadcastMessage(ArrayList<String> chat, String msg) {
+    //Server custom message broadcast ----------------------------------------------------
+    public static void serverbroadcastMessage(ArrayList<Packet> chat, Packet msg) {
         chat.add(msg);
         broadcastFunction(chat);
+    }
+
+    //Send Online List to Clients -----------------------------------------------------
+    public static void broadcastOnlineClients(ArrayList<ClientUserName> obj) {
+        for (ClientHandler clientHandler : clientHandlers){
+            try {
+                clientHandler.objectOutputStream.writeObject(obj);
+                clientHandler.objectOutputStream.flush();
+            } catch(IOException e){
+                //do nothing
+                System.out.println("<BroadCasting Client List Failure!>\n");
+            }
+        }
     }
 
     //Read And Set Client userName -------------------------------
     private void getSetUsername () {
         try {
             ClientUserName userClient = (ClientUserName) objectInputStream.readObject();
-            System.out.println("ClientUSERNAME: " + userClient.userName);
-            this.username = userClient.userName;
-            ServerModel.addUser(userClient.userName); // ----------
+            System.out.println("ClientUSERNAME: " + userClient.toString());
+            this.username = userClient;
+            ServerModel.addUser(userClient); // ----------
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -105,14 +119,14 @@ public class ClientHandler implements Runnable {
 
                 //read message from 1 client and stores it in the arraylist.
                 Packet msgFromClient = (Packet) objectInputStream.readObject();
-                System.out.println("Server received from client: " + msgFromClient.message);
+                System.out.println("Server received from client: " + msgFromClient.toString());
 
                 //write to all the clients GUI. How can this be accomplished?
-                ServerModel.addMsg(msgFromClient.message); // -----------
+                ServerModel.addMsg(msgFromClient); // -----------
                 System.out.println(ServerModel.getChatLog()); // ----------------
 
                 //creating a copy of messages is necessary because if we write messages, it will not write the entire arraylist.
-                ArrayList<String> messagesCopy = new ArrayList<String>(ServerModel.getChatLog()); // --------
+                ArrayList<Packet> messagesCopy = new ArrayList<Packet>(ServerModel.getChatLog()); // --------
 
                 //sends the arraylist to all the clients. We also want all clients objectInputStream to read it and display it in the GUI.
                 broadcastMessage(messagesCopy);

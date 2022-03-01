@@ -77,10 +77,8 @@ public class ServerController extends JFrame {
                    if (serverView.getDisplayedOnlineUsers().size() != serverModel.getOnlineUsers().size()) {
                        serverView.updateDisplayedOnlineUsers();
                        serverView.displayUsers();
+                       //serverModel.sendOnlineList(); // Send Online user list to Client -----------------
 
-                       // add function to send Updated Online user list to clients
-
-                       //function here?
 
                    }
 

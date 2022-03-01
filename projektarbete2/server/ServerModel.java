@@ -1,5 +1,9 @@
 package server;
 
+import message.Packet;
+import user.ClientUserName;
+import message.Packet;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -14,8 +18,8 @@ import java.util.List;
 public class ServerModel{
 
     //stores all chat history and User history
-    private static List<String> messages = new ArrayList<String>();
-    private static List<String> onlineUsers = new ArrayList<String>(); // -------------------------------------
+    private static List<Packet> messages = new ArrayList<Packet>();
+    private static List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // -------------------------------------
 
     //accepts client connection
     private ServerSocket serverSocket;
@@ -29,14 +33,14 @@ public class ServerModel{
     }
 
     // getters for chatlog And OnlineUsers
-    public static ArrayList<String> getChatLog() {return new ArrayList<>(messages);} //-------------------------
-    public static ArrayList<String> getOnlineUsers() {return new ArrayList<>(onlineUsers);} // ----------------
+    public static ArrayList<Packet> getChatLog() {return new ArrayList<>(messages);} //-------------------------
+    public static ArrayList<ClientUserName> getOnlineUsers() {return new ArrayList<>(onlineUsers);} // ----------------
 
-    public static void addMsg(String msg) {messages.add(msg);}
-    public static void removeMsg(String msg) {messages.remove(msg);}
+    public static void addMsg(Packet msg) {messages.add(msg);}
+    public static void removeMsg(Packet msg) {messages.remove(msg);}
 
-    public static void addUser(String user) {onlineUsers.add(user);}
-    public static void removeUser(String user) {onlineUsers.remove(user);}
+    public static void addUser(ClientUserName user) {onlineUsers.add(user);}
+    public static void removeUser(ClientUserName user) {onlineUsers.remove(user);}
 
 
     //Get port and Ip address
@@ -55,10 +59,12 @@ public class ServerModel{
         return IP;
     }
 
-    // Server shutdown Message method ---------------------------------------------------------------------------------
+    // Server shutdown Message method ---------------------------------------------------------------
     public void serverShutDown() {
-        ClientHandler.serverbroadcastMessage(getChatLog(), "Server Has Been Shutdown");
+        ClientHandler.serverbroadcastMessage(getChatLog(), new Packet("Server Has Been Shutdown"));
     }
+    //Send online list
+    public void sendOnlineList() {ClientHandler.broadcastOnlineClients(getOnlineUsers());}
 
     public void startServer(){
         //always listen for new client connections

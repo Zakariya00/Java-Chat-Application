@@ -11,4 +11,6 @@ public class ClientUserName implements Serializable {
         this.userName = user;
     }
 
+    public String toString() {return userName;}
+
 }

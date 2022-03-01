@@ -13,5 +13,6 @@ public class Packet implements Serializable {
         this.message = message;
     }
 
+    public String toString() {return message;}
 
 }

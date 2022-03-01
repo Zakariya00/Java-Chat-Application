@@ -1,6 +1,10 @@
 package client;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import message.Packet;
 
 public class ChatHistory {
     private File file = null;
@@ -12,32 +16,32 @@ public class ChatHistory {
 
 
 
-/*
-    public static void main (String[] args) {
 
-       /* File file = null;
-        List<String> history = new ArrayList<String>();
+    /*public static void main (String[] args) {
 
-        history.add("love");
-        history.add(" ");
-        history.add("high");
+        File file = null;
+        List<Packet> history = new ArrayList<Packet>();
 
-    }
-*/
+        history.add(new Packet("love"));
+        history.add(new Packet(" "));
+        history.add(new Packet("whigh"));
+
+    }*/
+
 
 
     public void SaveChatLog() throws IOException {
 
         try {
-            file = new File("chatHistory.txt");
+            file = new File( "chatHistory.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
             FileOutputStream fos = new FileOutputStream("chatHistory.txt");
             DataOutputStream Out = new DataOutputStream(fos);
             System.out.println(clientmodel.getChatLog());
-            for (String chat : clientmodel.getChatLog()) {
-                Out.write((chat).getBytes());
+            for (Packet chat : clientmodel.getChatLog()) {
+                Out.write((chat.toString().getBytes()));
 
             }
             Out.close();

@@ -24,9 +24,9 @@ public class ClientController extends JFrame {
         this.clientModel = new ClientModel();
         this.clientView = new ClientView();
 
-        add(clientView.mainPanel);
+        add(clientView.getmainPanel());
 
-        cl = (CardLayout) clientView.mainPanel.getLayout();
+        cl = (CardLayout) clientView.getmainPanel().getLayout();
 
 
         setSize(500, 500);
@@ -34,7 +34,7 @@ public class ClientController extends JFrame {
         setVisible(true);
 
 
-        clientView.connectButton.addActionListener(new ActionListener() {
+        clientView.getconnectButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -49,37 +49,32 @@ public class ClientController extends JFrame {
 
 
                 if (clientModel.getSocket()==null){
-                    clientView.connectionError.setText("Server is not running.");
-                } else if (clientView.formattedTextField.getText().equals("")) {
+                    clientView.getconnectionError().setText("Server is not running.");
+                } else if (clientView.getformattedTextField().getText().equals("")) {
                     //play a sound here - r
-                    clientView.connectionError.setText("Please enter a valid username.");
-                } else if (clientView.formattedTextField.getText().length()>15){
-                    clientView.connectionError.setText("Username can't be longer than 15 characters");
+                    clientView.getconnectionError().setText("Please enter a valid username.");
+                } else if (clientView.getformattedTextField().getText().length()>15){
+                    clientView.getconnectionError().setText("Username can't be longer than 15 characters");
                 } else {
 
-                    cl.show(clientView.mainPanel, "Card2");
-                    clientModel.setUsername(clientView.formattedTextField.getText());
+                    cl.show(clientView.getmainPanel(), "Card2");
+                    clientModel.setUsername(clientView.getformattedTextField().getText());
                     clientModel.sendUserName(); // Connect button sends username to Server ---------------------------------
-                    clientModel.sendMessage("User " + clientView.formattedTextField.getText() + " has connected to the server");
+                    clientModel.sendMessage("User " + clientView.getformattedTextField().getText() + " has connected to the server");
                     setTitle("Client - " + clientModel.getUsername());
 
                 }
-
-
-
             }
         });
 
-        clientView.sendMessageButton.addActionListener(new ActionListener() {
+        clientView.getsendMessageButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
 
                 //write from the client to the server when the send button is pressed
-                clientModel.sendMessage(clientModel.getUsername() + ": " + clientView.messageField.getText());
-                clientView.messageField.setText("");
-
-
+                clientModel.sendMessage(clientModel.getUsername() + ": " + clientView.getmessageField().getText());
+                clientView.getmessageField().setText("");
 
             }
         });
@@ -99,9 +94,7 @@ public class ClientController extends JFrame {
 
                     System.out.println("client shutdown");
                     System.exit(0);
-
                 }
-
             }
 
 
@@ -123,15 +116,12 @@ public class ClientController extends JFrame {
                 }
             }
         }).start();
-
     }
 
 
 
 
     public static void main (String[] args){
-
-
         ClientController clientController = new ClientController();
         clientController.listenForMessage();
 

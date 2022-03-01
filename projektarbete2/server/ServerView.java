@@ -5,16 +5,18 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import message.Packet;
+import user.ClientUserName;
+
 public class ServerView {
     private JPanel serverPanel;
     private JTextArea textArea; // Chat area
     private JButton button; // Server Shutdown button
     private JTextArea textArea2; // Online users area
-    private JLabel connectionLog;
     private ServerModel serverModel;
 
-    private static List<String> displayedMessages = new ArrayList<String>(); // --------------------------------
-    private static List<String> displayedOnlineUsers = new ArrayList<String>(); // ------------------------
+    private static List<Packet> displayedMessages = new ArrayList<Packet>(); // -----------------------
+    private static List<ClientUserName> displayedOnlineUsers = new ArrayList<ClientUserName>(); // ------------------------
 
 
 
@@ -29,27 +31,27 @@ public class ServerView {
     }
 
 
-    //Displays Client messages on Server GUI ---------------------------------------------------------------------------
+    //Displays Client messages on Server GUI ----------------------------------------------------
     public void displayMessages() {
-        ArrayList<String> msgs = new ArrayList<String>();
-        msgs.add("Server up and running on port "+serverModel.getPort());
-        msgs.add("Local Server IP address is "+serverModel.getIpAddress()+"\n");
+        ArrayList<Packet> msgs = new ArrayList<Packet>();
+        msgs.add(new Packet("Server up and running on port "+serverModel.getPort()));
+        msgs.add(new Packet("Local Server IP address is "+serverModel.getIpAddress()+"\n"));
         msgs.addAll(serverModel.getChatLog());
 
         textArea.setText("");
-        for (String msg : msgs) {
-            textArea.append(msg + "\n");
+        for (Packet msg : msgs) {
+            textArea.append(msg.toString() + "\n");
         }
     }
 
 
-    //Displays Connected Clients usernames on Server Gui ---------------------------------------------------------------
+    //Displays Connected Clients usernames on Server Gui ---------------------------------------
     public void displayUsers() {
-        ArrayList<String> users = serverModel.getOnlineUsers();
+        ArrayList<ClientUserName> users = serverModel.getOnlineUsers();
         textArea2.setText("");
 
-        for (String user : users) {
-          textArea2.append(" "+user + "\n");
+        for (ClientUserName user : users) {
+          textArea2.append(" "+user.toString() + "\n");
         }
     }
 
@@ -58,10 +60,10 @@ public class ServerView {
     public JPanel getServerPanel() {return this.serverPanel;}
     public JButton getButton() {return this.button;}
 
-    public ArrayList<String> getDisplayedMessages() {return new ArrayList<>(displayedMessages);}
-    public ArrayList<String> getDisplayedOnlineUsers() {return new ArrayList<>(displayedOnlineUsers);}
+    public ArrayList<Packet> getDisplayedMessages() {return new ArrayList<>(displayedMessages);}
+    public ArrayList<ClientUserName> getDisplayedOnlineUsers() {return new ArrayList<>(displayedOnlineUsers);}
 
-    // Updates Displayed Messages and OnlineUsers -------------------------------------------------------------------------
+    // Updates Displayed Messages and OnlineUsers ---------------------------------------------------
     public void updateDisplayedMessages () { displayedMessages = serverModel.getChatLog();}
     public void updateDisplayedOnlineUsers () {displayedOnlineUsers = serverModel.getOnlineUsers();}
 
