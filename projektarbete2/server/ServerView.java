@@ -13,7 +13,9 @@ public class ServerView {
     private JTextArea textArea; // Chat area
     private JButton button; // Server Shutdown button
     private JTextArea textArea2; // Online users area
-    private ServerModel serverModel;
+    private JButton saveButton;
+    public JButton loadButton;
+    public ServerModel serverModel;
 
     private static List<Packet> displayedMessages = new ArrayList<Packet>(); // -----------------------
     private static List<ClientUserName> displayedOnlineUsers = new ArrayList<ClientUserName>(); // ------------------------
@@ -59,6 +61,10 @@ public class ServerView {
     //Getter methods for private Instance Variables
     public JPanel getServerPanel() {return this.serverPanel;}
     public JButton getButton() {return this.button;}
+
+
+    public JButton getsaveButton() {return saveButton;}
+    public JButton getloadButton() {return loadButton;}
 
     public ArrayList<Packet> getDisplayedMessages() {return new ArrayList<>(displayedMessages);}
     public ArrayList<ClientUserName> getDisplayedOnlineUsers() {return new ArrayList<>(displayedOnlineUsers);}

@@ -31,6 +31,25 @@ public class ServerController extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
 
+        serverView.getsaveButton().addActionListener(new ActionListener()  {
+                                                         public void actionPerformed(ActionEvent e) {
+                                                             serverModel.save();
+                                                         }
+                                                     });
+
+
+
+        serverView.getloadButton().addActionListener(new ActionListener()  {
+        public void actionPerformed(ActionEvent e) {
+            serverModel.load();
+            serverView.displayMessages();
+            serverModel.serverMessagesTest();
+
+        }
+    });
+
+
+
 
         // Server shutdown button opens JOptionPane ----------------------------------------
         serverView.getButton().addActionListener(new ActionListener() {

@@ -2,17 +2,30 @@ package message;
 
 import java.io.Serializable;
 
-// Every message we send is a packet because objectoutputstream can not handle strings. It can only handle serialized objects.
-// That's why packet implements serializable.
-
+/** Packet
+ *       Class for encapsulation
+ *       and serialization of a String message.
+ *
+ * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
+ *
+ * @version 1.0
+*/
 public class Packet implements Serializable {
 
-    public String message;
+    /** Message as String.*/
+    private String message;
 
+    /** Constructor Takes a String
+     * Creates a Packet with given String
+     * @param message given String
+     */
     public Packet(String message){
         this.message = message;
     }
 
+    /** Returns the encapsulated String message
+     * @return String object message
+     */
     public String toString() {return message;}
 
 }

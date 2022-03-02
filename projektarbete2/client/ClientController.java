@@ -111,12 +111,28 @@ public class ClientController extends JFrame {
             @Override
             public void run() {
                 while (true) {
-                    clientModel.readMessage(); //read the inputstream
-                    clientView.displayMessage(); //display to the view
+
+                    if(clientModel.readMessage()) {clientView.displayMessage();}
+                    else if(clientModel.readOnlineUser()) {clientView.displayUsers();}
+
+
                 }
             }
         }).start();
     }
+
+    /*public void listenForUser(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+
+                    if(clientModel.readOnlineUser()) {clientView.displayUsers();} //
+
+                }
+            }
+        }).start();
+    }*/
 
 
 
@@ -124,6 +140,7 @@ public class ClientController extends JFrame {
     public static void main (String[] args){
         ClientController clientController = new ClientController();
         clientController.listenForMessage();
+        //clientController.listenForUser();
 
 
     }

@@ -11,6 +11,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+import java.io.*;
+import java.util.*;
+import java.awt.*;
 
 
 //Receives the messages from each client and stores all the messages in an arraylist and sends them to the clients.
@@ -63,6 +68,56 @@ public class ServerModel{
     public void serverShutDown() {
         ClientHandler.serverbroadcastMessage(getChatLog(), new Packet("Server Has Been Shutdown"));
     }
+
+    public void serverMessagesTest() {
+        ClientHandler.serverbroadcastMessage(getChatLog(), new Packet ("Load Succesful"));
+    }
+
+    public void save() {
+        String userDirLocation = System.getProperty("user.dir");
+        File userDir = new File(userDirLocation);
+        JFileChooser jfc = new JFileChooser(userDirLocation);
+        int returnValue = jfc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jfc.getSelectedFile();
+            try {
+                FileOutputStream fileOut = new FileOutputStream(selectedFile);
+                ObjectOutputStream output = new ObjectOutputStream(fileOut);
+                output.writeObject(messages);
+                System.out.println("Save successful");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void load() {
+        String userDirLocation = System.getProperty("user.dir");
+        File userDir = new File(userDirLocation);
+        JFileChooser jfc = new JFileChooser(userDirLocation);
+        int returnValue = jfc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jfc.getSelectedFile();
+            try {
+                FileInputStream fileIn = new FileInputStream(selectedFile);
+                ObjectInputStream input = new ObjectInputStream(fileIn);
+                this.messages = (ArrayList<Packet>) input.readObject();
+                System.out.println("Load successful");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
     //Send online list
     public void sendOnlineList() {ClientHandler.broadcastOnlineClients(getOnlineUsers());}
 
