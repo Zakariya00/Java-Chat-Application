@@ -61,16 +61,11 @@ public class ClientModel {
 
     //skickar ett meddelande till servern med timestamp på meddelandet
     public void sendMessage(String message) {
-        String time;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        time = "<"+dtf.format(now)+"> ";
-
         try {
-            objectOutputStream.writeObject(new Packet(time+message));
+            objectOutputStream.writeObject(new Packet(message));
             objectOutputStream.flush();
         } catch (IOException e){
-            //do nothing
+            e.printStackTrace();
         }
     }
 

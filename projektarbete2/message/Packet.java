@@ -1,6 +1,8 @@
 package message;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /** Packet
  *       Class for encapsulation
@@ -20,7 +22,12 @@ public class Packet implements Serializable {
      * @param message given String
      */
     public Packet(String message){
-        this.message = message;
+        String time;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        time = "<"+dtf.format(now)+"> ";
+
+        this.message = time+message;
     }
 
     /** Returns the encapsulated String message

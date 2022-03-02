@@ -73,6 +73,9 @@ public class ServerModel{
         ClientHandler.serverbroadcastMessage(getChatLog(), new Packet ("Load Succesful"));
     }
 
+
+
+    //instead of "open", it should say "save log"
     public void save() {
         String userDirLocation = System.getProperty("user.dir");
         File userDir = new File(userDirLocation);
