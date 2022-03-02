@@ -14,9 +14,6 @@ import javax.swing.*;
 import java.io.*;
 
 
-
-//Receives the messages from each client and stores all the messages in an arraylist and sends them to the clients.
-
 public class ServerModel{
 
     //stores all chat history and User history
