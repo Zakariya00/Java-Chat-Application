@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import client.ClientModel;
 import message.Message;
 import user.ClientUserName;
 
@@ -17,8 +18,9 @@ public class ServerView {
     public JButton loadButton;
     public ServerModel serverModel;
 
-    private static List<Message> displayedMessages = new ArrayList<>(); // -----------------------
+    private static List<Message> displayedMessages = new ArrayList<Message>(); // -----------------------
     private static List<ClientUserName> displayedOnlineUsers = new ArrayList<ClientUserName>(); // ------------------------
+    private ClientModel clientModel;
 
 
 
@@ -35,13 +37,12 @@ public class ServerView {
 
     //Displays Client messages on Server GUI ----------------------------------------------------
     public void displayMessages() {
-        ArrayList<Message> msgs = new ArrayList<>();
-        msgs.add(new Message("Server up and running on port "+serverModel.getPort()));
-        msgs.add(new Message("Local Server IP address is "+serverModel.getIpAddress()+"\n"));
-        msgs.addAll(serverModel.getChatLog());
-
         textArea.setText("");
-        for (Message msg : msgs) {
+        textArea.append("Server up and running on port " + serverModel.getPort() + "\n");
+        textArea.append("Local Server IP address is " + serverModel.getIpAddress() + "\n\n");
+
+        ArrayList<Message> chatLog = serverModel.getChatLog();
+        for (Message msg : chatLog) {
             textArea.append(msg.toString() + "\n");
         }
     }

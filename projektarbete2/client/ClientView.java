@@ -35,10 +35,10 @@ public class ClientView {
      * Sets lineWrap to true so that long messages will break on the chat window instead of creating a horizontal scroll policy.
      */
 
-    public ClientView(ClientModel clientModel){
+    public ClientView(){
         textArea.setEditable(false);
         textArea.setLineWrap(true);
-        this.clientModel = clientModel;
+        //this.clientModel = clientModel;
     }
 
 
@@ -70,5 +70,7 @@ public class ClientView {
     public JTextField getmessageField() {return this.messageField;}
     public JButton getsendMessageButton() {return this.sendMessageButton;}
     public JLabel getconnectionError() {return this.connectionError;}
+
+    public void setClientModel(ClientModel clientmodel) {this.clientModel = clientmodel;}
 
 }

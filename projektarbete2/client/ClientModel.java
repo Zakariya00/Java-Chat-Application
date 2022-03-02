@@ -137,14 +137,17 @@ public class ClientModel {
 
             for (Object o : tmp) {
                 System.out.println(o.getClass().getName());
-                if(o.getClass() != ClientUserName.class) {return false;}
+                if (o.getClass() != ClientUserName.class) {
+                    return false;
+                }
             }
 
             onlineUsers = (ArrayList<ClientUserName>) tmp;
             System.out.println(onlineUsers.toString());
             return true;
-        } catch (IOException | ClassNotFoundException e){
-            System.out.println("<ReadOnlineUser Method Error!>");
+            //} catch (IOException | ClassNotFoundException e){
+            } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }

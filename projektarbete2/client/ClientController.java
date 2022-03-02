@@ -7,14 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-/**
- * Controls the clients GUI and handles button events
- *
- * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
- *
- * @version 1.0 3/2/2022
- *
- */
+//handles button presses and things that affect the model.
+//it should not display messages in reality, that should be handled by the view.
 
 public class ClientController extends JFrame {
 
@@ -23,14 +17,12 @@ public class ClientController extends JFrame {
     private CardLayout cl; //denna layout tillåter att man går från connect window till chat window på ett smidigt sätt
 
 
-    /**
-     * Adds the ClientView JPanel to the JFrame and adds event listeners to the buttons
-     */
+
     public ClientController() {
         super("client");
 
         this.clientModel = new ClientModel();
-        this.clientView = new ClientView(clientModel);
+        this.clientView = new ClientView();
 
         add(clientView.getmainPanel());
 
@@ -50,6 +42,10 @@ public class ClientController extends JFrame {
                 if (clientModel.getSocket() == null){
                     clientModel.connectToServer();
                 }
+
+                //pass the updated clientModel to the clientView
+                clientView.setClientModel(clientModel);
+
 
 
                 if (clientModel.getSocket()==null){
@@ -91,7 +87,7 @@ public class ClientController extends JFrame {
                 int input = JOptionPane.showConfirmDialog(null,"Are you sure you want to close the client?");
                 if(input == JOptionPane.YES_NO_OPTION) {
 
-                    //this allows you to close the window if server is not running. it won't sendMessage.
+                    //this allows you to close the window if server is not running. it wont sendMessage.
                     if (clientModel.getSocket()!=null) {
                         clientModel.sendMessage("User " + clientModel.getUsername() + " disconnected from the server");
                     }
@@ -109,9 +105,7 @@ public class ClientController extends JFrame {
 
     }
 
-    /**
-     * Creates a new thread which constantly listens for new messages from the server using clientModel and updates the clientView display
-     */
+
     public void listenForMessage(){
         new Thread(new Runnable() {
             @Override
@@ -127,11 +121,22 @@ public class ClientController extends JFrame {
         }).start();
     }
 
+    /*public void listenForUser(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
 
-    /**
-     * Creates the clientController and starts the listenForMessage function
-     * @param args
-     */
+                    if(clientModel.readOnlineUser()) {clientView.displayUsers();} //
+
+                }
+            }
+        }).start();
+    }*/
+
+
+
+
     public static void main (String[] args){
         ClientController clientController = new ClientController();
         clientController.listenForMessage();
