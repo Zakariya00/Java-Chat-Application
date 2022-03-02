@@ -7,13 +7,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 
-//the Client handles the input and output streams. It stores the messages to send.
+/**
+ * Contains the logic for communicating with the server over the objectinputstream and objectoutputstream.
+ * Stores all the messages that the server sends.
+ *
+ * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
+ *
+ * @version 1.0 3/2/2022
+ *
+ */
 
 public class ClientModel {
 
@@ -25,6 +31,9 @@ public class ClientModel {
     private List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // ---------
 
 
+    /**
+     * Creates the socket that communicates with the server and initializes the objectoutputstream and objectinputstream from that socket.
+     */
     public ClientModel() {
         try {
             socket = new Socket("localhost", 1234);
@@ -36,6 +45,9 @@ public class ClientModel {
 
     }
 
+    /**
+     * re-initializes the socket and object streams when the connect button is pressed in case the server was not running when the client started
+     */
     public void connectToServer() {
         try {
             socket = new Socket("localhost", 1234);

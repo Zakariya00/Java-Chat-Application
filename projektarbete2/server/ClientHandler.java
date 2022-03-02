@@ -10,7 +10,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-//handles 1 client
 
 public class ClientHandler implements Runnable {
 

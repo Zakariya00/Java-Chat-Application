@@ -52,11 +52,15 @@ QUESTION:
 2. Z-fixa client window user list.
 3. Vilken del av koden hanterar user-list, varför är den så stor?
 4. fixa så att den inte blinkar när serverns stängs ner.
-5. Inga publika variabler
+5. Inga publika variabler ✅
 6. Varför kopior av olika variabler - Servermodel message och messageCopy?
-7. Fixa GIT på Intellij, clona projektet.
+7. Fixa GIT på Intellij, clona projektet. ✅
 
 
+
+
+
+-how to have different version of project with git.
 
 
 

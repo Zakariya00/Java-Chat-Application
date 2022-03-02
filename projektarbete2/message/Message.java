@@ -4,21 +4,23 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/** Packet
- *       Class for encapsulation
- *       and serialization of a String message.
+/**
+ * Class for encapsulating and manipulating a String message.
  *
  * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
  *
- * @version 1.0
+ * @version 1.0 3/2/2022
+ *
 */
 public class Message implements Serializable {
 
     /** Message as String.*/
     private String message;
 
-    /** Constructor Takes a String
-     * Creates a Packet with given String
+    /**
+     * Takes a String
+     * Prepends the current time to the string and stores it.
+     *
      * @param message given String
      */
     public Message(String message){
