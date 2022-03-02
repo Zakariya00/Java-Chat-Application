@@ -71,7 +71,7 @@ public class ClientHandler implements Runnable {
     }
 
     //Send Chat messages to clients ---------------------------------------------------
-    private void broadcastMessage(ArrayList<Packet> chat) {
+    private static void broadcastMessage(ArrayList<Packet> chat) {
         broadcastFunction(chat);
     }
 
