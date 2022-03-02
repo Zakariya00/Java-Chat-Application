@@ -46,6 +46,8 @@ NOT SOLVED ❌
 12.
 Fixa Exception handling för varje IOException. Skapa funktion closeConnection -r
 
+NOT SOLVED ❌
+13. Fixa JAVADOC kommentarer på varje klass och publik variabel/metod.
 
 QUESTION:
 1. Vart finns save knappen på client window?, Commita och pusha

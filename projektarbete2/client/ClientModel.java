@@ -1,7 +1,7 @@
 package client;
 
 import message.Message;
-import user.ClientUserName; // ----------------------------------------------------------------------------------------
+import user.ClientUserName;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -58,6 +58,8 @@ public class ClientModel {
         }
     }
 
+    //Javadoc
+
     //Get and Set methods for private Instance Variables
     public ArrayList<Message> getChatLog(){return new ArrayList<>(chatLog); }
     public ArrayList<ClientUserName> getOnlineUsers() {return new ArrayList<>(onlineUsers); }
@@ -71,7 +73,11 @@ public class ClientModel {
         this.username = username;
     }
 
-    //skickar ett meddelande till servern med timestamp på meddelandet
+
+    /**
+     * Sends a Message object to the server over the objectoutputstream.
+     * @param message The message to send to the server
+     */
     public void sendMessage(String message) {
         try {
             objectOutputStream.writeObject(new Message(message));
@@ -93,6 +99,10 @@ public class ClientModel {
     }
 
 
+    /**
+     * Reads the ChatLog from the server and updates the chat log stored on the client.
+     * @return
+     */
     public boolean readMessage() {
         try {
             List tmp = new ArrayList<>();
@@ -118,6 +128,7 @@ public class ClientModel {
     }
 
 
+
     public boolean readOnlineUser() {
         try {
             List tmp = new ArrayList<>();
@@ -139,6 +150,9 @@ public class ClientModel {
     }
 
 
+    /**
+     * Closes the client connection in case of an error. Closes all sockets and streams to free resources.
+     */
     public void closeConnection() {
         try {
             if (socket != null) {

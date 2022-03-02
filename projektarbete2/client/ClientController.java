@@ -30,7 +30,7 @@ public class ClientController extends JFrame {
         super("client");
 
         this.clientModel = new ClientModel();
-        this.clientView = new ClientView();
+        this.clientView = new ClientView(clientModel);
 
         add(clientView.getmainPanel());
 
@@ -50,10 +50,6 @@ public class ClientController extends JFrame {
                 if (clientModel.getSocket() == null){
                     clientModel.connectToServer();
                 }
-
-                //pass the updated clientModel to the clientView
-                clientView.setClientModel(clientModel);
-
 
 
                 if (clientModel.getSocket()==null){

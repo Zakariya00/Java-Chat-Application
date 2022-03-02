@@ -1,20 +1,21 @@
 package client;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
-import client.*;
 import message.Message;
 import user.ClientUserName;
 
-// The ClientGUI displays the information that the client gets from the server in the chat window.
-// It also works as a Controller, where it lets the client send messages to the server when it presses the send message button.
-//It works both as controller and as a ClientView. This is because the ClientController.form works as the ClientView.
+/**
+ * The ClientView displays the information that the client gets from the server in the chat window.
+ *
+ * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
+ *
+ * @version 1.0 3/2/2022
+ */
 
 public class ClientView {
 
-    //the form handles and creates the ClientView automatically.
+
     private JPanel mainPanel;
     private JPanel ConnectPanel;
     private JPanel ChatPanel;
@@ -25,20 +26,25 @@ public class ClientView {
     private JButton sendMessageButton;
     private JLabel connectionError;
     private JTextArea textArea1;
-
-    //takes a clientModel(which stores all messages for a client) and displays it
     private ClientModel clientModel;
 
-    public ClientView(){
+
+    /**
+     * Provides the ClientView with a clientModel so that it can display data and fetch data from the clientModel.
+     * Makes the text area which displays all the messages uneditable.
+     * Sets lineWrap to true so that long messages will break on the chat window instead of creating a horizontal scroll policy.
+     */
+
+    public ClientView(ClientModel clientModel){
         textArea.setEditable(false);
         textArea.setLineWrap(true);
-    }
-
-    public void setClientModel(ClientModel clientModel){
         this.clientModel = clientModel;
     }
 
 
+    /**
+     * Displays all the messages in the client chatlog in the client chat window.
+     */
     public void displayMessage(){
         ArrayList<Message> chatLog = clientModel.getChatLog(); //reads the message that server has sent to clients inputstream and displays it in the window.
         textArea.setText("");
