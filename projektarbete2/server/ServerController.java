@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 
 //the server will have a GUI.
@@ -17,12 +18,14 @@ public class ServerController extends JFrame {
 
     private ServerModel serverModel;
     private ServerView serverView;
+    private ChatHistory chathistory;
 
     public ServerController(ServerModel serverModel){
 
         super("Server");
         this.serverModel = serverModel;
         this.serverView = new ServerView(serverModel);
+        this.chathistory = new ChatHistory(serverModel);
 
         serverView.displayMessages(); //------------------------------------------------
         add(serverView.getServerPanel());
@@ -41,10 +44,17 @@ public class ServerController extends JFrame {
 
                 int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to shutdown the Server?");
                 if (input == JOptionPane.YES_NO_OPTION) {
-
+                    try {
+                        chathistory.SaveChatLog();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     System.out.println("Server Shutdown");
                     serverModel.serverShutDown();
                     System.exit(0);
+                }
+                else {
+                    chathistory.ReadChatLog();
                 }
             }
         });
@@ -56,10 +66,17 @@ public class ServerController extends JFrame {
 
                int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to shutdown the Server?");
                if(input == JOptionPane.YES_NO_OPTION) {
-
+                   try {
+                       chathistory.SaveChatLog();
+                   } catch (IOException ex) {
+                       ex.printStackTrace();
+                   }
                    serverModel.serverShutDown();
                    System.out.println("Server Shutdown");
                    System.exit(0);
+               }
+               else {
+                   chathistory.ReadChatLog();
                }
             }
         });
