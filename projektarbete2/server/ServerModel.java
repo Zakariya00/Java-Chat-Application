@@ -1,8 +1,7 @@
 package server;
 
-import message.Packet;
+import message.Message;
 import user.ClientUserName;
-import message.Packet;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -23,7 +22,7 @@ import java.awt.*;
 public class ServerModel{
 
     //stores all chat history and User history
-    private static List<Packet> messages = new ArrayList<Packet>();
+    private static List<Message> messages = new ArrayList<>();
     private static List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // -------------------------------------
 
     //accepts client connection
@@ -38,11 +37,11 @@ public class ServerModel{
     }
 
     // getters for chatlog And OnlineUsers
-    public static ArrayList<Packet> getChatLog() {return new ArrayList<>(messages);} //-------------------------
+    public static ArrayList<Message> getChatLog() {return new ArrayList<>(messages);} //-------------------------
     public static ArrayList<ClientUserName> getOnlineUsers() {return new ArrayList<>(onlineUsers);} // ----------------
 
-    public static void addMsg(Packet msg) {messages.add(msg);}
-    public static void removeMsg(Packet msg) {messages.remove(msg);}
+    public static void addMsg(Message msg) {messages.add(msg);}
+    public static void removeMsg(Message msg) {messages.remove(msg);}
 
     public static void addUser(ClientUserName user) {onlineUsers.add(user);}
     public static void removeUser(ClientUserName user) {onlineUsers.remove(user);}
@@ -66,11 +65,11 @@ public class ServerModel{
 
     // Server shutdown Message method ---------------------------------------------------------------
     public void serverShutDown() {
-        ClientHandler.serverbroadcastMessage(getChatLog(), new Packet("Server Has Been Shutdown"));
+        ClientHandler.serverbroadcastMessage(getChatLog(), new Message("Server Has Been Shutdown"));
     }
 
     public void serverMessagesTest() {
-        ClientHandler.serverbroadcastMessage(getChatLog(), new Packet ("Load Succesful"));
+        ClientHandler.serverbroadcastMessage(getChatLog(), new Message ("Load Succesful"));
     }
 
 
@@ -106,7 +105,7 @@ public class ServerModel{
             try {
                 FileInputStream fileIn = new FileInputStream(selectedFile);
                 ObjectInputStream input = new ObjectInputStream(fileIn);
-                this.messages = (ArrayList<Packet>) input.readObject();
+                this.messages = (ArrayList<Message>) input.readObject();
                 System.out.println("Load successful");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

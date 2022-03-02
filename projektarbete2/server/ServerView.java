@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import message.Packet;
+import message.Message;
 import user.ClientUserName;
 
 public class ServerView {
@@ -17,7 +17,7 @@ public class ServerView {
     public JButton loadButton;
     public ServerModel serverModel;
 
-    private static List<Packet> displayedMessages = new ArrayList<Packet>(); // -----------------------
+    private static List<Message> displayedMessages = new ArrayList<>(); // -----------------------
     private static List<ClientUserName> displayedOnlineUsers = new ArrayList<ClientUserName>(); // ------------------------
 
 
@@ -35,13 +35,13 @@ public class ServerView {
 
     //Displays Client messages on Server GUI ----------------------------------------------------
     public void displayMessages() {
-        ArrayList<Packet> msgs = new ArrayList<Packet>();
-        msgs.add(new Packet("Server up and running on port "+serverModel.getPort()));
-        msgs.add(new Packet("Local Server IP address is "+serverModel.getIpAddress()+"\n"));
+        ArrayList<Message> msgs = new ArrayList<>();
+        msgs.add(new Message("Server up and running on port "+serverModel.getPort()));
+        msgs.add(new Message("Local Server IP address is "+serverModel.getIpAddress()+"\n"));
         msgs.addAll(serverModel.getChatLog());
 
         textArea.setText("");
-        for (Packet msg : msgs) {
+        for (Message msg : msgs) {
             textArea.append(msg.toString() + "\n");
         }
     }
@@ -66,7 +66,7 @@ public class ServerView {
     public JButton getsaveButton() {return saveButton;}
     public JButton getloadButton() {return loadButton;}
 
-    public ArrayList<Packet> getDisplayedMessages() {return new ArrayList<>(displayedMessages);}
+    public ArrayList<Message> getDisplayedMessages() {return new ArrayList<>(displayedMessages);}
     public ArrayList<ClientUserName> getDisplayedOnlineUsers() {return new ArrayList<>(displayedOnlineUsers);}
 
     // Updates Displayed Messages and OnlineUsers ---------------------------------------------------

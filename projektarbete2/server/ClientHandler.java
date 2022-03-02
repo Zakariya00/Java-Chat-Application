@@ -1,6 +1,6 @@
 package server;
 
-import message.Packet;
+import message.Message;
 import user.ClientUserName; // -----------------------------------------------------------------------------------------
 
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class ClientHandler implements Runnable {
     }
 
     //BroadCast function to send messages  --------------------------------------
-    private static void broadcastFunction(ArrayList<Packet> obj) {
+    private static void broadcastFunction(ArrayList<Message> obj) {
         for (ClientHandler clientHandler : clientHandlers){
             try {
                 clientHandler.objectOutputStream.writeObject(obj);
@@ -71,12 +71,12 @@ public class ClientHandler implements Runnable {
     }
 
     //Send Chat messages to clients ---------------------------------------------------
-    private static void broadcastMessage(ArrayList<Packet> chat) {
+    private static void broadcastMessage(ArrayList<Message> chat) {
         broadcastFunction(chat);
     }
 
     //Server custom message broadcast ----------------------------------------------------
-    public static void serverbroadcastMessage(ArrayList<Packet> chat, Packet msg) {
+    public static void serverbroadcastMessage(ArrayList<Message> chat, Message msg) {
         chat.add(msg);
         broadcastFunction(chat);
     }
@@ -118,7 +118,7 @@ public class ClientHandler implements Runnable {
             try {
 
                 //read message from 1 client and stores it in the arraylist.
-                Packet msgFromClient = (Packet) objectInputStream.readObject();
+                Message msgFromClient = (Message) objectInputStream.readObject();
                 System.out.println("Server received from client: " + msgFromClient.toString());
 
                 //write to all the clients GUI. How can this be accomplished?
@@ -126,7 +126,7 @@ public class ClientHandler implements Runnable {
                 System.out.println(ServerModel.getChatLog()); // ----------------
 
                 //creating a copy of messages is necessary because if we write messages, it will not write the entire arraylist.
-                ArrayList<Packet> messagesCopy = new ArrayList<Packet>(ServerModel.getChatLog()); // --------
+                ArrayList<Message> messagesCopy = new ArrayList<Message>(ServerModel.getChatLog()); // --------
 
                 //sends the arraylist to all the clients. We also want all clients objectInputStream to read it and display it in the GUI.
                 broadcastMessage(messagesCopy);

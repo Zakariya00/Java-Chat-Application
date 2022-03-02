@@ -1,6 +1,6 @@
 package client;
 
-import message.Packet;
+import message.Message;
 import user.ClientUserName; // ----------------------------------------------------------------------------------------
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class ClientModel {
     private Socket socket;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
-    private List<Packet> chatLog = new ArrayList<Packet>();
+    private List<Message> chatLog = new ArrayList<>();
     private List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // ---------
 
 
@@ -47,7 +47,7 @@ public class ClientModel {
     }
 
     //Get and Set methods for private Instance Variables
-    public ArrayList<Packet> getChatLog(){return new ArrayList<>(chatLog); }
+    public ArrayList<Message> getChatLog(){return new ArrayList<>(chatLog); }
     public ArrayList<ClientUserName> getOnlineUsers() {return new ArrayList<>(onlineUsers); }
     public Socket getSocket(){
         return socket;
@@ -62,7 +62,7 @@ public class ClientModel {
     //skickar ett meddelande till servern med timestamp på meddelandet
     public void sendMessage(String message) {
         try {
-            objectOutputStream.writeObject(new Packet(message));
+            objectOutputStream.writeObject(new Message(message));
             objectOutputStream.flush();
         } catch (IOException e){
             e.printStackTrace();
@@ -89,12 +89,12 @@ public class ClientModel {
 
             for (Object o : tmp) {
                 System.out.println(o.getClass().getName());
-                if (o.getClass() != Packet.class) {
+                if (o.getClass() != Message.class) {
                     return false;
                 }
             }
 
-            chatLog = (ArrayList<Packet>) tmp;
+            chatLog = (ArrayList<Message>) tmp;
             System.out.println(chatLog.toString());
             return true;
             // } catch (IOException | ClassNotFoundException e){

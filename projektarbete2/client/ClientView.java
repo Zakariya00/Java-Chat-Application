@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import client.*;
+import message.Message;
 import user.ClientUserName;
-import message.Packet;
 
 // The ClientGUI displays the information that the client gets from the server in the chat window.
 // It also works as a Controller, where it lets the client send messages to the server when it presses the send message button.
@@ -40,9 +40,9 @@ public class ClientView {
 
 
     public void displayMessage(){
-        ArrayList<Packet> chatLog = clientModel.getChatLog(); //reads the message that server has sent to clients inputstream and displays it in the window.
+        ArrayList<Message> chatLog = clientModel.getChatLog(); //reads the message that server has sent to clients inputstream and displays it in the window.
         textArea.setText("");
-        for (Packet msg : chatLog){
+        for (Message msg : chatLog){
             textArea.append(msg.toString() + "\n");
         }
     }
