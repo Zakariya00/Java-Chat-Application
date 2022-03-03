@@ -43,7 +43,8 @@ public class ClientHandler implements Runnable {
         try {
             if (client != null) {
                 client.close();
-                ServerModel.removeUser(username); // User removed from Online users list -----------------------
+                ServerModel.removeUser(username);// User removed from Online users list ---------------
+                broadcastOnlineClients(ServerModel.getOnlineUsers());
             }
             if (objectOutputStream != null) {
                 objectOutputStream.close();
@@ -86,9 +87,10 @@ public class ClientHandler implements Runnable {
             try {
                 clientHandler.objectOutputStream.writeObject(obj);
                 clientHandler.objectOutputStream.flush();
-            } catch(IOException e){
+            } catch(Exception e){
                 //do nothing
                 System.out.println("<BroadCasting Client List Failure!>\n");
+                e.printStackTrace();
             }
         }
     }
@@ -111,6 +113,7 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
         getSetUsername();
+        if (ServerModel.getOnlineUsers().size() != 0){broadcastOnlineClients(ServerModel.getOnlineUsers());}
 
         while (client.isConnected()) {
 

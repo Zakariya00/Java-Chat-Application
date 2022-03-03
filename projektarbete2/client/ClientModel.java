@@ -112,7 +112,9 @@ public class ClientModel {
             for (Object o : tmp) {
                 System.out.println(o.getClass().getName());
                 if (o.getClass() != Message.class) {
-                    return false;
+                    onlineUsers = (ArrayList<ClientUserName>) tmp;
+                    System.out.println(onlineUsers.toString());
+                    return true;
                 }
             }
 
@@ -122,31 +124,6 @@ public class ClientModel {
             // } catch (IOException | ClassNotFoundException e){
         } catch (Exception e) {
             //System.out.println("<ReadMessage Method Error!>");
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-
-
-    public boolean readOnlineUser() {
-        try {
-            List tmp = new ArrayList<>();
-            tmp = (ArrayList) objectInputStream.readObject();
-
-
-            for (Object o : tmp) {
-                System.out.println(o.getClass().getName());
-                if (o.getClass() != ClientUserName.class) {
-                    return false;
-                }
-            }
-
-            onlineUsers = (ArrayList<ClientUserName>) tmp;
-            System.out.println(onlineUsers.toString());
-            return true;
-            //} catch (IOException | ClassNotFoundException e){
-            } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
