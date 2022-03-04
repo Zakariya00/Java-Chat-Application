@@ -29,7 +29,7 @@ public class ClientModel {
     private ObjectInputStream objectInputStream;
     private List<Message> chatLog = new ArrayList<>();
     private List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // ---------
-
+  private boolean sound;
 
     /**
      * Creates the socket that communicates with the server and initializes the objectoutputstream and objectinputstream from that socket.
@@ -43,6 +43,10 @@ public class ClientModel {
             closeConnection();
         }
 
+    }
+
+    public void setsound(boolean b){
+        sound=b;
     }
 
     /**

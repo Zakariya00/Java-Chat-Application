@@ -26,6 +26,27 @@ public class ClientView {
     private JButton sendMessageButton;
     private JLabel connectionError;
     private JTextArea textArea1;
+
+    private JMenu fileMenu;
+    private JMenu editMenu;
+    private JMenu helpMenu;
+    private JMenu colorMenu;
+    private JMenu soundMenu;
+    private JMenu TSMenu;
+
+    private JMenuItem colorItem1;
+    private JMenuItem colorItem2;
+    private JMenuItem soundItemOn;
+    private JMenuItem soundItemOff;
+    private JMenuItem offItemTS;
+    private JMenuItem onItemTS;
+    private JMenuItem colorItem3;
+    private JMenuItem helpItem;
+    private JMenuItem aboutItem;
+    private JMenuItem saveItem;
+
+    private boolean time;
+
     private ClientModel clientModel;
 
 
@@ -39,8 +60,19 @@ public class ClientView {
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea1.setEditable(false);
+        colorMenu.add(colorItem1);
+        colorMenu.add(colorItem2);
+        colorMenu.add(colorItem3);
+        soundMenu.add(soundItemOff);
+        soundMenu.add(soundItemOn);
+        TSMenu.add(offItemTS);
+        TSMenu.add(onItemTS);
+        time=true;
     }
 
+    public void setTime(boolean t){
+        time=t;
+    }
 
     /**
      * Displays all the messages in the client chatlog in the client chat window.
@@ -49,7 +81,13 @@ public class ClientView {
         ArrayList<Message> chatLog = clientModel.getChatLog(); //reads the message that server has sent to clients inputstream and displays it in the window.
         textArea.setText("");
         for (Message msg : chatLog){
-            textArea.append(msg.toString() + "\n");
+            if(time=true){
+                textArea.append(msg.toString() + "\n");
+            }else {
+                String m= msg.toString().substring(msg.toString().indexOf(">")+1);
+                textArea.append(m + "\n");
+            }
+
         }
     }
 
@@ -70,7 +108,16 @@ public class ClientView {
     public JTextField getmessageField() {return this.messageField;}
     public JButton getsendMessageButton() {return this.sendMessageButton;}
     public JLabel getconnectionError() {return this.connectionError;}
-
+    public JTextArea gettextArea(){return this.textArea;}
+    public JMenuItem getColorItem1(){return this.colorItem1;}
+    public JMenuItem getColorItem2(){return this.colorItem2;}
+    public JMenuItem getColorItem3(){return this.colorItem3;}
+    public JMenuItem getOnItemTS(){return this.onItemTS;}
+    public JMenuItem getOffItemTS(){return this.offItemTS;}
+    public JMenuItem getSoundItemOff(){return this.soundItemOff;}
+    public JMenuItem getSoundItemOn(){return this.soundItemOn;}
+    public JMenuItem getAboutItem(){return this.aboutItem;}
+    public JMenuItem getHelpItem(){return this.helpItem;}
     public void setClientModel(ClientModel clientmodel) {this.clientModel = clientmodel;}
 
 }
