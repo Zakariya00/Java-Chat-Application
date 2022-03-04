@@ -1,8 +1,6 @@
 package server;
 
 import message.Message;
-import user.ClientUserName; // -----------------------------------------------------------------------------------------
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,7 +11,7 @@ import java.util.List;
 
 public class ClientHandler implements Runnable {
 
-    private ClientUserName username; // client instance being handled's userName -----------------------------------------------
+    private String username; // client instance being handled's userName -----------------------------------------------
     private Socket client;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
@@ -82,7 +80,7 @@ public class ClientHandler implements Runnable {
     }
 
     //Send Online List to Clients -----------------------------------------------------
-    public static void broadcastOnlineClients(ArrayList<ClientUserName> obj) {
+    public static void broadcastOnlineClients(ArrayList<String> obj) {
         for (ClientHandler clientHandler : clientHandlers){
             try {
                 clientHandler.objectOutputStream.writeObject(obj);
@@ -98,7 +96,7 @@ public class ClientHandler implements Runnable {
     //Read And Set Client userName -------------------------------
     private void getSetUsername () {
         try {
-            ClientUserName userClient = (ClientUserName) objectInputStream.readObject();
+            String userClient = (String) objectInputStream.readObject();
             System.out.println("ClientUSERNAME: " + userClient.toString());
             this.username = userClient;
             ServerModel.addUser(userClient); // ----------

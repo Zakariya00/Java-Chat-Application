@@ -17,7 +17,6 @@ public class ClientController extends JFrame {
     private CardLayout cl; //denna layout tillåter att man går från connect window till chat window på ett smidigt sätt
 
 
-
     public ClientController() {
         super("client");
 

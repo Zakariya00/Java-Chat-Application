@@ -1,8 +1,6 @@
 package client;
 
 import message.Message;
-import user.ClientUserName;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -28,7 +26,7 @@ public class ClientModel {
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
     private List<Message> chatLog = new ArrayList<>();
-    private List<ClientUserName> onlineUsers = new ArrayList<ClientUserName>(); // ---------
+    private List<String> onlineUsers = new ArrayList<>(); // ---------
 
 
     /**
@@ -40,6 +38,7 @@ public class ClientModel {
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e){
+            e.printStackTrace();
             closeConnection();
         }
 
@@ -55,6 +54,7 @@ public class ClientModel {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e){
             e.printStackTrace();
+            closeConnection();
         }
     }
 
@@ -62,7 +62,7 @@ public class ClientModel {
 
     //Get and Set methods for private Instance Variables
     public ArrayList<Message> getChatLog(){return new ArrayList<>(chatLog); }
-    public ArrayList<ClientUserName> getOnlineUsers() {return new ArrayList<>(onlineUsers); }
+    public ArrayList<String> getOnlineUsers() {return new ArrayList<>(onlineUsers); }
     public Socket getSocket(){
         return socket;
     }
@@ -84,16 +84,18 @@ public class ClientModel {
             objectOutputStream.flush();
         } catch (IOException e){
             e.printStackTrace();
+            closeConnection();
         }
     }
 
     //Send userName to Server ------------------------------------------------------------------------------------------
     public void sendUserName() {
         try {
-            objectOutputStream.writeObject(new ClientUserName(getUsername()));
+            objectOutputStream.writeObject(getUsername());
             objectOutputStream.flush();
         } catch (IOException e){
-            //do nothing
+            e.printStackTrace();
+            closeConnection();
         }
 
     }
@@ -112,7 +114,7 @@ public class ClientModel {
             for (Object o : tmp) {
                 System.out.println(o.getClass().getName());
                 if (o.getClass() != Message.class) {
-                    onlineUsers = (ArrayList<ClientUserName>) tmp;
+                    onlineUsers = (ArrayList<String>) tmp;
                     System.out.println(onlineUsers.toString());
                     return true;
                 }
@@ -121,10 +123,9 @@ public class ClientModel {
             chatLog = (ArrayList<Message>) tmp;
             System.out.println(chatLog.toString());
             return true;
-            // } catch (IOException | ClassNotFoundException e){
         } catch (Exception e) {
-            //System.out.println("<ReadMessage Method Error!>");
             e.printStackTrace();
+            closeConnection();
         }
         return false;
     }
@@ -145,7 +146,7 @@ public class ClientModel {
                 objectOutputStream.close();
             }
         } catch (IOException e) {
-            //do nothing
+            e.printStackTrace();
         }
     }
 

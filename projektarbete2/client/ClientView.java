@@ -3,7 +3,6 @@ package client;
 import javax.swing.*;
 import java.util.ArrayList;
 import message.Message;
-import user.ClientUserName;
 
 /**
  * The ClientView displays the information that the client gets from the server in the chat window.
@@ -54,9 +53,9 @@ public class ClientView {
     }
 
     public void displayUsers() {
-        ArrayList<ClientUserName> users = clientModel.getOnlineUsers(); //reads the message that server has sent to clients inputstream and displays it in the window.
+        ArrayList<String> users = clientModel.getOnlineUsers(); //reads the message that server has sent to clients inputstream and displays it in the window.
         textArea1.setText("");
-        for (ClientUserName user : users){
+        for (String user : users){
             textArea1.append(user.toString() + "\n");
         }
     }
