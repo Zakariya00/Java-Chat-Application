@@ -1,11 +1,16 @@
 package client;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 //handles button presses and things that affect the model.
 //it should not display messages in reality, that should be handled by the view.
@@ -15,7 +20,7 @@ public class ClientController extends JFrame {
     private ClientModel clientModel;
     private ClientView clientView;
     private CardLayout cl; //denna layout tillåter att man går från connect window till chat window på ett smidigt sätt
-
+    public boolean sound;
 
     public ClientController() {
         super("client");
@@ -27,10 +32,121 @@ public class ClientController extends JFrame {
 
         cl = (CardLayout) clientView.getmainPanel().getLayout();
 
+        sound=true;
 
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
+
+
+
+        //Turn on and off Sounds
+        clientView.getSoundItemOn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getSoundItemOn()){
+                    sound=true;
+                    clientModel.setsound(true);
+                }
+
+            }
+        });
+
+
+        clientView.getSoundItemOff().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getSoundItemOff()){
+                    sound=false;
+                    clientModel.setsound(false);
+                }
+
+            }
+        });
+
+
+
+        //Change Colors White, Blue and Yellow
+        clientView.getColorItem1().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getColorItem1()){
+                    clientView.gettextArea().setBackground(new Color(124,172,245));
+                }
+
+            }
+        });
+
+        clientView.getColorItem2().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getColorItem2()){
+                    clientView.gettextArea().setBackground(new Color(242,232,169));
+                }
+
+            }
+        });
+
+        clientView.getColorItem3().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getColorItem3()){
+                    clientView.gettextArea().setBackground(new Color(255,255,255));
+                }
+
+            }
+        });
+
+
+        //TimeStamp on and off
+        clientView.getOnItemTS().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getOnItemTS()){
+
+                    clientView.setTime(true);
+                }
+            }
+        });
+
+        clientView.getOffItemTS().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getOffItemTS()){
+                    clientView.setTime(false);
+                }
+            }
+        });
+
+
+        //Help menu and about menu
+        clientView.getAboutItem().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getAboutItem()){
+                    String aboutMsg="Simple Chat Application with Java\nContributers:\nMirco Ghadir\nRamza Josoph\nValeria Nafuna\nZakariya Omar\nDAT055 2022-03-07";
+                    String title="About";
+                    JOptionPane.showMessageDialog(null, aboutMsg, title, JOptionPane.PLAIN_MESSAGE);
+                }
+            }
+        });
+
+        clientView.getHelpItem().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==clientView.getHelpItem()){
+                    Desktop d= Desktop.getDesktop();
+                    try {
+                        d.browse(new URI("https://github.com/ksedix/Java-Chat-Application/blob/main/README.md"));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (URISyntaxException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        });
 
 
         clientView.getconnectButton().addActionListener(new ActionListener() {
@@ -42,6 +158,8 @@ public class ClientController extends JFrame {
                     clientModel.connectToServer();
                 }
 
+
+
                 //pass the updated clientModel to the clientView
                 clientView.setClientModel(clientModel);
 
@@ -50,10 +168,80 @@ public class ClientController extends JFrame {
                 if (clientModel.getSocket()==null){
                     clientView.getconnectionError().setText("Server is not running.");
                 } else if (clientView.getformattedTextField().getText().equals("")) {
-                    //play a sound here - r
                     clientView.getconnectionError().setText("Please enter a valid username.");
+
+                    String userdirectory = System.getProperty("user.dir");
+                    System.out.println(userdirectory);
+                    if (sound==true) {
+                        AudioInputStream audio = null;
+
+                        try {
+                            audio = AudioSystem.getAudioInputStream(new File("projektarbete2/ErrorSound.wav"));
+                        } catch (UnsupportedAudioFileException er) {
+                            er.printStackTrace();
+                        } catch (IOException er) {
+                            er.printStackTrace();
+                        }
+                        Clip clip = null;
+                        try {
+                            clip = AudioSystem.getClip();
+                        } catch (LineUnavailableException er) {
+                            er.printStackTrace();
+                        }
+                        try {
+                            clip.open(audio);
+                        } catch (LineUnavailableException er) {
+                            er.printStackTrace();
+                        } catch (IOException er) {
+                            er.printStackTrace();
+                        }
+                        clip.start();
+                        try {
+                            Thread.currentThread().sleep(1000);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                        clip.stop();
+
+                    }
+
+
                 } else if (clientView.getformattedTextField().getText().length()>15){
                     clientView.getconnectionError().setText("Username can't be longer than 15 characters");
+                    String userdirectory = System.getProperty("user.dir");
+                    System.out.println(userdirectory);
+                    if (sound==true) {
+                        AudioInputStream audio = null;
+
+                        try {
+                            audio = AudioSystem.getAudioInputStream(new File("projektarbete2/ErrorSound.wav"));
+                        } catch (UnsupportedAudioFileException er) {
+                            er.printStackTrace();
+                        } catch (IOException er) {
+                            er.printStackTrace();
+                        }
+                        Clip clip = null;
+                        try {
+                            clip = AudioSystem.getClip();
+                        } catch (LineUnavailableException er) {
+                            er.printStackTrace();
+                        }
+                        try {
+                            clip.open(audio);
+                        } catch (LineUnavailableException er) {
+                            er.printStackTrace();
+                        } catch (IOException er) {
+                            er.printStackTrace();
+                        }
+                        clip.start();
+                        try {
+                            Thread.currentThread().sleep(1000);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                        clip.stop();
+
+                    }
                 } else {
 
                     cl.show(clientView.getmainPanel(), "Card2");
@@ -62,9 +250,46 @@ public class ClientController extends JFrame {
                     clientModel.sendMessage("User " + clientView.getformattedTextField().getText() + " has connected to the server");
                     setTitle("Client - " + clientModel.getUsername());
 
+                    String userdirectory = System.getProperty("user.dir");
+                    System.out.println(userdirectory);
+                    if (sound==true) {
+                        AudioInputStream audio = null;
+
+                        try {
+                            audio = AudioSystem.getAudioInputStream(new File("projektarbete2/ConnectedSound.wav"));
+                        } catch (UnsupportedAudioFileException er) {
+                            er.printStackTrace();
+                        } catch (IOException er) {
+                            er.printStackTrace();
+                        }
+                        Clip clip = null;
+                        try {
+                            clip = AudioSystem.getClip();
+                        } catch (LineUnavailableException er) {
+                            er.printStackTrace();
+                        }
+                        try {
+                            clip.open(audio);
+                        } catch (LineUnavailableException er) {
+                            er.printStackTrace();
+                        } catch (IOException er) {
+                            er.printStackTrace();
+                        }
+                        clip.start();
+                        try {
+                            Thread.currentThread().sleep(1000);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                        clip.stop();
+
+                    }
+
                 }
             }
         });
+
+
 
         clientView.getsendMessageButton().addActionListener(new ActionListener() {
             @Override
@@ -113,6 +338,41 @@ public class ClientController extends JFrame {
 
                     if(clientModel.readMessage()) {
                         clientView.displayMessage();
+                        String userdirectory = System.getProperty("user.dir");
+                        System.out.println(userdirectory);
+                        if (sound==true) {
+                            AudioInputStream audio = null;
+
+                            try {
+                                audio = AudioSystem.getAudioInputStream(new File("projektarbete2/MessageSound.wav"));
+                            } catch (UnsupportedAudioFileException er) {
+                                er.printStackTrace();
+                            } catch (IOException er) {
+                                er.printStackTrace();
+                            }
+                            Clip clip = null;
+                            try {
+                                clip = AudioSystem.getClip();
+                            } catch (LineUnavailableException er) {
+                                er.printStackTrace();
+                            }
+                            try {
+                                clip.open(audio);
+                            } catch (LineUnavailableException er) {
+                                er.printStackTrace();
+                            } catch (IOException er) {
+                                er.printStackTrace();
+                            }
+                            clip.start();
+                            try {
+                                Thread.currentThread().sleep(1000);
+                            } catch (InterruptedException ex) {
+                                ex.printStackTrace();
+                            }
+                            clip.stop();
+
+                        }
+
                         clientView.displayUsers();
                     }
                 }
