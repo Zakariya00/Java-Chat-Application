@@ -9,10 +9,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 import java.io.*;
-import java.util.*;
-import java.awt.*;
 
 
 //Receives the messages from each client and stores all the messages in an arraylist and sends them to the clients.
