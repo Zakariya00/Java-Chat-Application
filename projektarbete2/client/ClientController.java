@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 //handles button presses and things that affect the model.
 //it should not display messages in reality, that should be handled by the view.
@@ -118,12 +120,14 @@ public class ClientController extends JFrame {
         });
 
 
-        //Help Menu
+        //Help menu and about menu
         clientView.getAboutItem().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource()==clientView.getAboutItem()){
-                    JOptionPane.showMessageDialog(null, "Contributers: Ramza, Valeria, Mirco, Zakaria", "About", JOptionPane.PLAIN_MESSAGE);
+                    String aboutMsg="Simple Chat Application with Java\nContributers:\nMirco Ghadir\nRamza Josoph\nValeria Nafuna\nZakariya Omar\nDAT055 2022-03-07";
+                    String title="About";
+                    JOptionPane.showMessageDialog(null, aboutMsg, title, JOptionPane.PLAIN_MESSAGE);
                 }
             }
         });
@@ -132,7 +136,15 @@ public class ClientController extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource()==clientView.getHelpItem()){
-                    JOptionPane.showMessageDialog(null, "Futher instructions", "Help", JOptionPane.PLAIN_MESSAGE);
+                    Desktop d= Desktop.getDesktop();
+                    try {
+                        d.browse(new URI("https://github.com/ksedix/Java-Chat-Application/blob/main/README.md"));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (URISyntaxException ex) {
+                        ex.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -165,7 +177,7 @@ public class ClientController extends JFrame {
                         AudioInputStream audio = null;
 
                         try {
-                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/ramza/Documents/OOA/projektarbete2/ErrorSound.wav"));
+                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/ErrorSound.wav"));
                         } catch (UnsupportedAudioFileException er) {
                             er.printStackTrace();
                         } catch (IOException er) {
@@ -203,7 +215,7 @@ public class ClientController extends JFrame {
                         AudioInputStream audio = null;
 
                         try {
-                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/ramza/Documents/OOA/projektarbete2/ErrorSound.wav"));
+                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/ErrorSound.wav"));
                         } catch (UnsupportedAudioFileException er) {
                             er.printStackTrace();
                         } catch (IOException er) {
@@ -245,7 +257,7 @@ public class ClientController extends JFrame {
                         AudioInputStream audio = null;
 
                         try {
-                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/ramza/Documents/OOA/projektarbete2/Connected.wav"));
+                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/ConnectedSound.wav"));
                         } catch (UnsupportedAudioFileException er) {
                             er.printStackTrace();
                         } catch (IOException er) {
@@ -333,7 +345,7 @@ public class ClientController extends JFrame {
                             AudioInputStream audio = null;
 
                             try {
-                                audio = AudioSystem.getAudioInputStream(new File("C:/Users/ramza/Documents/OOA/projektarbete2/MessageSound.wav"));
+                                audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/MessageSound.wav"));
                             } catch (UnsupportedAudioFileException er) {
                                 er.printStackTrace();
                             } catch (IOException er) {

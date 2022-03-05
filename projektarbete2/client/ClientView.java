@@ -67,10 +67,11 @@ public class ClientView {
         soundMenu.add(soundItemOn);
         TSMenu.add(offItemTS);
         TSMenu.add(onItemTS);
-        time=true;
+
     }
 
     public void setTime(boolean t){
+
         time=t;
     }
 
@@ -81,7 +82,7 @@ public class ClientView {
         ArrayList<Message> chatLog = clientModel.getChatLog(); //reads the message that server has sent to clients inputstream and displays it in the window.
         textArea.setText("");
         for (Message msg : chatLog){
-            if(time=true){
+            if(time==true){
                 textArea.append(msg.toString() + "\n");
             }else {
                 String m= msg.toString().substring(msg.toString().indexOf(">")+1);
