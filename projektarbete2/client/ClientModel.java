@@ -27,6 +27,7 @@ public class ClientModel {
     private ObjectInputStream objectInputStream;
     private List<Message> chatLog = new ArrayList<>();
     private List<String> onlineUsers = new ArrayList<>(); // ---------
+    private boolean sound;
 
 
     /**
@@ -43,6 +44,11 @@ public class ClientModel {
         }
 
     }
+
+    public void setsound(boolean b){
+        sound=b;
+    }
+
 
     /**
      * re-initializes the socket and object streams when the connect button is pressed in case the server was not running when the client started

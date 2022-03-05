@@ -99,6 +99,9 @@ public class ClientView {
         }
     }
 
+
+
+
     // Getter methods for Private Instance Variables
     public JPanel getmainPanel(){return this.mainPanel;}
     public JPanel getConnectPanel() {return this.ConnectPanel;}
