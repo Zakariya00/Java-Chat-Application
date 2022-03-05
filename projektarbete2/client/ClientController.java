@@ -177,7 +177,7 @@ public class ClientController extends JFrame {
                         AudioInputStream audio = null;
 
                         try {
-                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/ErrorSound.wav"));
+                            audio = AudioSystem.getAudioInputStream(new File("projektarbete2/ErrorSound.wav"));
                         } catch (UnsupportedAudioFileException er) {
                             er.printStackTrace();
                         } catch (IOException er) {
@@ -215,7 +215,7 @@ public class ClientController extends JFrame {
                         AudioInputStream audio = null;
 
                         try {
-                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/ErrorSound.wav"));
+                            audio = AudioSystem.getAudioInputStream(new File("projektarbete2/ErrorSound.wav"));
                         } catch (UnsupportedAudioFileException er) {
                             er.printStackTrace();
                         } catch (IOException er) {
@@ -257,7 +257,7 @@ public class ClientController extends JFrame {
                         AudioInputStream audio = null;
 
                         try {
-                            audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/ConnectedSound.wav"));
+                            audio = AudioSystem.getAudioInputStream(new File("projektarbete2/ConnectedSound.wav"));
                         } catch (UnsupportedAudioFileException er) {
                             er.printStackTrace();
                         } catch (IOException er) {
@@ -345,7 +345,7 @@ public class ClientController extends JFrame {
                             AudioInputStream audio = null;
 
                             try {
-                                audio = AudioSystem.getAudioInputStream(new File("C:/Users/AJ/OOALab/projektarbete2/MessageSound.wav"));
+                                audio = AudioSystem.getAudioInputStream(new File("projektarbete2/MessageSound.wav"));
                             } catch (UnsupportedAudioFileException er) {
                                 er.printStackTrace();
                             } catch (IOException er) {
