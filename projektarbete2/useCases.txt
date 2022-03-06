@@ -1,68 +1,43 @@
 USE CASES:
 
-In software and systems engineering, the phrase use case is a polyseme with two senses:
+1. As a user I want to be a connect to the server.
 
-1. A usage scenario for a piece of software; often used in the plural to suggest situations where a piece of software may be useful.
-2. A potential scenario in which a system receives an external request (such as user input) and responds to it.
+1.1 As a user I want to be notified when I successfully connect to the server or otherwise.
 
--reformulate use cases
+1.2 As user I want to confirm that I want to disconnect from the server.
 
-Done
-1. server GUI - list of connected users, connection history- "user x has connected", server - close server button - z
+2. As a user I want to get to be able to identify myself using the username.
 
-Done
-2. timestamp on each message - m
+3. As a user I want to be able to write a message to the another user
 
-Done
-3. file - menu : "save chat log" vilket sparar hela klientens chatt som text fil, help - som förklarar programmet - r, v
+4. As a user I want to be able to send receive messages
 
-Not Done
-4. ljud när man skickar meddelande, när man får meddelande - olika ljud, blank user name sound error sound, connect ljud, olika ljud för när man skickar och får meddalnde  - r, v
+6. As a user I want to be able to read the messages received from other users.
 
-DONE
-5. broadcast and update message for all clients - all
+7. As a user I want to know the time when I receive the message.
 
-DONE
-6. do you wish to close the server?  SERVER GUI -- z
+8. As a user I want to get a notification when I receive a new message
 
-DONE
-7. do you wish to close the client?, JOPTION pane "Do you wish to close the server" YES ---> close client  -- z
+8.1 As a user I want to be able to turn off notification when I receive a message
 
-NOT DONE
-8. Failed to connect to server- no transition if server is not running. JOption "failed to connect to server - server not running" - M
+9. As a user I would like know the other users using the chat app.
 
-Not done
-9. Client can see who is connected to the server. - M, Z
-Done
-9.1: Server can also see list of users. - Z
-Done
-10. Server shutdown button. -Z
+10. As a user I want to be able to save the chat history.
 
-Done
-11. If server shuts down. Write to all clients - Server has shut down. -Z
+11. As a user I want to be able to load the chat history.
 
-Done
-12. skapa en server shutdown meddelande funktion. -Z
+12. As a user I would like to be able to get information about the functionality of the chat app
 
-Not done
-13. Help describes the chat. It will open a JOPTIONPANE which lists the authors and creation date and version. (see m-chat) - R, V
+13.As a developer I would like to display the online users for the server.
 
-Not done
-14. Edit file  - edit username, edit chat color - R, V
 
-DONE
-15. Invalid username- "blank space cant connect", "username 2 long error"- M
 
-16.testning- alla
 
-17. client should not be able to send message longer than 1000 characters?
 
-SPARA CHAT LOG:
 
--användaren kan spara sin chat log som en text fil
--servern kan spara sin chat log och återuppta den, så att om man stänger ner servern och startar om den kommer den gamla chatten upp igen.
 
-förslag: se bara det som skrivits sen client joinat själv.
+
+
 
 
 
