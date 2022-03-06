@@ -128,6 +128,15 @@ public class ClientController extends JFrame {
             }
         });
 
+        clientView.getSaveItem().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == clientView.getSaveItem()) {
+                    clientModel.save();
+                }
+            }
+        });
+
         clientView.getHelpItem().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -323,7 +332,7 @@ public class ClientController extends JFrame {
             public void run() {
                 while (true) {
 
-                    if (clientModel.readMessage()) {
+                    if (clientModel.readIncoming()) {
                         clientView.displayMessage();
                         String userdirectory = System.getProperty("user.dir");
                         if (sound == true) {

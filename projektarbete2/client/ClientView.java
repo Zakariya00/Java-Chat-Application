@@ -251,6 +251,13 @@ public class ClientView {
     }
 
     /**
+     * accesses the menu when adding the save option
+     *
+     * @return saveItem
+     */
+    public JMenuItem getSaveItem() {return this.saveItem;}
+
+    /**
      * method for initialising the clientmodel
      *
      * @param clientmodel initialises clientmodel

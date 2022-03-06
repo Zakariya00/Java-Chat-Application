@@ -2,9 +2,8 @@ package client;
 
 import message.Message;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import javax.swing.*;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -156,12 +155,12 @@ public class ClientModel {
 
 
     /**
-     * Reads the ChatLog from the server and updates the chat log stored on the client.
+     * Reads the ChatLog and OnlineList from the server and updates those stored on the client.
      *
      * @return true or false
      * @throws Exception
      */
-    public boolean readMessage() {
+    public boolean readIncoming() {
         try {
             List tmp = new ArrayList<>();
             tmp = (ArrayList) objectInputStream.readObject();
@@ -203,6 +202,31 @@ public class ClientModel {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * saves the Client chatlog to selected file in Txt format
+     * Can be opened with texteditor of choice
+     */
+    public void save() {
+        String userDirLocation = System.getProperty("user.dir");
+        File userDir = new File(userDirLocation);
+        JFileChooser jfc = new JFileChooser(userDirLocation);
+        int returnValue = jfc.showOpenDialog(null);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jfc.getSelectedFile();
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(selectedFile));
+                for (Message msg : getChatLog()) {
+                    writer.write(msg.toString());
+                    writer.newLine();
+                }
+                writer.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
