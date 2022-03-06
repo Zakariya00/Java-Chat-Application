@@ -131,7 +131,6 @@ public class ClientHandler implements Runnable {
     private void getSetUsername() {
         try {
             String userClient = (String) objectInputStream.readObject();
-            System.out.println("ClientUSERNAME: " + userClient);
             this.username = userClient;
             ServerModel.addUser(userClient);
         } catch (IOException e) {

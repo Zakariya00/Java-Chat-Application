@@ -166,7 +166,6 @@ public class ClientModel {
             tmp = (ArrayList) objectInputStream.readObject();
 
             for (Object o : tmp) {
-                System.out.println(o.getClass().getName());
                 if (o.getClass() != Message.class) {
                     onlineUsers = (ArrayList<String>) tmp;
                     return true;
@@ -224,13 +223,13 @@ public class ClientModel {
                     writer.newLine();
                 }
                 writer.close();
-            } catch (Exception e) {
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-
 }
 
 
