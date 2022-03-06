@@ -334,7 +334,6 @@ public class ClientController extends JFrame {
 
                     if (clientModel.readIncoming()) {
                         clientView.displayMessage();
-                        String userdirectory = System.getProperty("user.dir");
                         if (sound == true) {
                             AudioInputStream audio = null;
 
