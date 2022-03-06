@@ -170,13 +170,11 @@ public class ClientModel {
                 System.out.println(o.getClass().getName());
                 if (o.getClass() != Message.class) {
                     onlineUsers = (ArrayList<String>) tmp;
-                    System.out.println(onlineUsers);
                     return true;
                 }
             }
 
             chatLog = (ArrayList<Message>) tmp;
-            System.out.println(chatLog);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

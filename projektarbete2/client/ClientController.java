@@ -161,7 +161,6 @@ public class ClientController extends JFrame {
                     clientView.getconnectionError().setText("Please enter a valid username.");
 
                     String userdirectory = System.getProperty("user.dir");
-                    System.out.println(userdirectory);
                     if (sound == true) {
                         AudioInputStream audio = null;
 
@@ -199,7 +198,6 @@ public class ClientController extends JFrame {
                 } else if (clientView.getformattedTextField().getText().length() > 15) {
                     clientView.getconnectionError().setText("Username can't be longer than 15 characters");
                     String userdirectory = System.getProperty("user.dir");
-                    System.out.println(userdirectory);
                     if (sound == true) {
                         AudioInputStream audio = null;
 
@@ -241,7 +239,6 @@ public class ClientController extends JFrame {
                     setTitle("Client - " + clientModel.getUsername());
 
                     String userdirectory = System.getProperty("user.dir");
-                    System.out.println(userdirectory);
                     if (sound == true) {
                         AudioInputStream audio = null;
 
@@ -301,7 +298,6 @@ public class ClientController extends JFrame {
                         clientModel.sendMessage("User " + clientModel.getUsername() + " disconnected from the server");
                     }
 
-                    System.out.println("client shutdown");
                     System.exit(0);
                 }
             }
