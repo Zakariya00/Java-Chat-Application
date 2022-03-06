@@ -3,52 +3,20 @@
   <ID>JAVA</ID>
   <OriginalElement>client</OriginalElement>
   <nodes>
-    <node x="245.0" y="33.0">client.ClientModel</node>
-    <node x="238.5" y="543.0">client.ClientView</node>
-    <node x="-52.26080577122943" y="1005.0">client.ClientController</node>
+    <node x="328.0" y="0.0">client.ClientModel</node>
+    <node x="0.0" y="0.0">client.ClientView</node>
+    <node x="0.0" y="564.0">client.ClientController</node>
   </nodes>
   <notes />
-  <edges>
-    <edge source="client.ClientView" target="client.ClientModel" relationship="TO_ONE">
-      <point x="141.5" y="0.0" />
-      <point x="523.5" y="1100.0" />
-      <point x="523.5" y="260.0" />
-      <point x="135.0" y="0.0" />
-    </edge>
-    <edge source="client.ClientView" target="client.ClientModel" relationship="DEPENDENCY">
-      <point x="0.0" y="-557.0" />
-      <point x="0.0" y="227.0" />
-    </edge>
-    <edge source="client.ClientController" target="client.ClientModel" relationship="TO_ONE">
-      <point x="-5.0" y="-95.0" />
-      <point x="32.73919422877057" y="33.0" />
-      <point x="0.0" y="-227.0" />
-    </edge>
-    <edge source="client.ClientController" target="client.ClientView" relationship="CREATE">
-      <point x="90.0" y="0.0" />
-      <point x="-141.5" y="0.0" />
-    </edge>
-    <edge source="client.ClientController" target="client.ClientModel" relationship="CREATE">
-      <point x="5.0" y="-95.0" />
-      <point x="42.73919422877057" y="260.0" />
-      <point x="-135.0" y="0.0" />
-    </edge>
-    <edge source="client.ClientController" target="client.ClientView" relationship="TO_ONE">
-      <point x="0.0" y="95.0" />
-      <point x="37.73919422877057" y="1657.0" />
-      <point x="0.0" y="557.0" />
-    </edge>
-  </edges>
-  <settings layout="Compact" zoom="0.9701660735468566" showDependencies="true" x="518.927306644418" y="1052.0269153789127" />
-  <SelectedNodes>
-    <node>client.ClientController</node>
-  </SelectedNodes>
+  <edges />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="280.5" y="332.5" />
+  <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
     <Category>Fields</Category>
     <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
-  <VISIBILITY>private</VISIBILITY>
+  <VISIBILITY>protected</VISIBILITY>
 </Diagram>
 

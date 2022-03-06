@@ -25,7 +25,7 @@ public class ClientController extends JFrame {
     private final ClientModel clientModel;
     private final ClientView clientView;
     private final CardLayout cl;
-    public boolean sound;
+    private boolean sound;
 
 
     /**
