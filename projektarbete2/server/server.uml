@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>server</OriginalElement>
+  <nodes>
+    <node x="74.5" y="727.0">server.ServerController</node>
+    <node x="654.0" y="1068.0">server.ClientHandler</node>
+    <node x="383.5" y="573.0">server.ServerModel</node>
+    <node x="36.5" y="31.0">server.ServerView</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="server.ServerController" target="server.ServerModel" relationship="TO_ONE">
+      <point x="105.5" y="0.0" />
+      <point x="-116.5" y="0.0" />
+    </edge>
+    <edge source="server.ServerController" target="server.ServerView" relationship="CREATE">
+      <point x="15.0" y="-73.0" />
+      <point x="15.0" y="249.0" />
+    </edge>
+    <edge source="server.ServerView" target="server.ServerModel" relationship="TO_ONE">
+      <point x="0.0" y="-249.0" />
+      <point x="180.0" y="29.0" />
+      <point x="505.0" y="29.0" />
+      <point x="5.0" y="-227.0" />
+    </edge>
+    <edge source="server.ServerView" target="server.ServerModel" relationship="DEPENDENCY">
+      <point x="143.5" y="0.0" />
+      <point x="495.0" y="280.0" />
+      <point x="-5.0" y="-227.0" />
+    </edge>
+    <edge source="server.ServerModel" target="server.ClientHandler" relationship="CREATE">
+      <point x="5.0" y="227.0" />
+      <point x="505.0" y="1240.0" />
+      <point x="-186.0" y="0.0" />
+    </edge>
+    <edge source="server.ServerController" target="server.ServerView" relationship="TO_ONE">
+      <point x="0.0" y="-73.0" />
+      <point x="0.0" y="249.0" />
+    </edge>
+    <edge source="server.ServerController" target="server.ServerModel" relationship="CREATE">
+      <point x="105.5" y="15.0" />
+      <point x="-116.5" y="15.0" />
+    </edge>
+    <edge source="server.ClientHandler" target="server.ServerModel" relationship="DEPENDENCY">
+      <point x="0.0" y="-172.0" />
+      <point x="840.0" y="800.0" />
+      <point x="116.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Compact" zoom="0.6167369901547117" showDependencies="true" x="531.0" y="711.0" />
+  <SelectedNodes>
+    <node>server.ServerController</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
