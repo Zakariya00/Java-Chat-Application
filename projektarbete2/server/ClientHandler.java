@@ -142,7 +142,7 @@ public class ClientHandler implements Runnable {
 
     /**
      * The main run method for the server that
-     * enters into a continous loop to read the incoming stream ounce the client is connected.
+     * enters into a continous loop to read the incoming stream once the client is connected.
      * Its broadcasts the in stream to all the clients.
      */
     @Override

@@ -205,8 +205,8 @@ public class ClientModel {
     }
 
     /**
-     * saves the Client chatlog to selected file in Txt format
-     * Can be opened with texteditor of choice
+     * saves the Client chatlog to selected file in .txt format
+     * Can be opened with text editor of choice
      */
     public void save() {
         String userDirLocation = System.getProperty("user.dir");
