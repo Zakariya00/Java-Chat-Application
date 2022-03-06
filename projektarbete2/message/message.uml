@@ -3,11 +3,11 @@
   <ID>JAVA</ID>
   <OriginalElement>message</OriginalElement>
   <nodes>
-    <node x="457.0" y="142.0">message.Message</node>
+    <node x="341.0" y="93.0">message.Message</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="527.5" y="249.5" />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="528.0" y="250.0" />
   <SelectedNodes>
     <node>message.Message</node>
   </SelectedNodes>

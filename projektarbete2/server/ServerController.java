@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 
 
 /**
- * ServerConroller class for handlng listeners to the serverview
+ * ServerController class for adding event listeners to the serverView and setting up the serverModel.
  *
  * @version 1.0 3/2/2022
  * @Author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
