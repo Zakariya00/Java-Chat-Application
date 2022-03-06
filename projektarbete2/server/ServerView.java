@@ -4,73 +4,135 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import client.ClientModel;
 import message.Message;
 
+/**
+ * The ServerView displays the information that the server gets from the client.
+ *
+ * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
+ * @version 1.0 3/2/2022
+ */
 public class ServerView {
-    private JPanel serverPanel;
-    private JTextArea textArea; // Chat area
-    private JButton button; // Server Shutdown button
-    private JTextArea textArea2; // Online users area
-    private JButton saveButton;
+    private static List<Message> displayedMessages = new ArrayList<Message>();
+    private static List<String> displayedOnlineUsers = new ArrayList<>();
     public JButton loadButton;
     public ServerModel serverModel;
-
-    private static List<Message> displayedMessages = new ArrayList<Message>(); // -----------------------
-    private static List<String> displayedOnlineUsers = new ArrayList<>(); // ------------------------
+    private JPanel serverPanel;
+    private JTextArea textArea;
+    private JButton button;
+    private JTextArea textArea2;
+    private JButton saveButton;
     private ClientModel clientModel;
 
+    /**
+     * class constructor for initializing servermodel and teh view.
+     *
+     * @param serverModel initialising servermodel
+     */
+    public ServerView(ServerModel serverModel) {
 
-
-    public ServerView(ServerModel serverModel){
         this.serverModel = serverModel;
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea2.setEditable(false);
-        textArea2.setLayout(new GridLayout(0,1));
-        //textArea2.setEditable(false);
+        textArea2.setLayout(new GridLayout(0, 1));
 
     }
 
-
-    //Displays Client messages on Server GUI ----------------------------------------------------
+    /**
+     * displays client messages on the server GUI
+     */
     public void displayMessages() {
         textArea.setText("");
         textArea.append("Server up and running on port " + serverModel.getPort() + "\n");
         textArea.append("Local Server IP address is " + serverModel.getIpAddress() + "\n\n");
 
-        ArrayList<Message> chatLog = serverModel.getChatLog();
+        ArrayList<Message> chatLog = ServerModel.getChatLog();
         for (Message msg : chatLog) {
             textArea.append(msg.toString() + "\n");
         }
     }
 
-
-    //Displays Connected Clients usernames on Server Gui ---------------------------------------
+    /**
+     * Displays list of online users
+     */
     public void displayUsers() {
-        ArrayList<String> users = serverModel.getOnlineUsers();
+        ArrayList<String> users = ServerModel.getOnlineUsers();
         textArea2.setText("");
 
         for (String user : users) {
-          textArea2.append(" "+user.toString() + "\n");
+            textArea2.append(" " + user + "\n");
         }
     }
 
+    /**
+     * access the serverpanel
+     *
+     * @return serverpanel
+     */
+    public JPanel getServerPanel() {
+        return this.serverPanel;
+    }
 
-    //Getter methods for private Instance Variables
-    public JPanel getServerPanel() {return this.serverPanel;}
-    public JButton getButton() {return this.button;}
+    /**
+     * accesses the button to add listerners
+     *
+     * @return button
+     */
+    public JButton getButton() {
+        return this.button;
+    }
 
+    /**
+     * access save button to add listener
+     *
+     * @return button
+     */
+    public JButton getsaveButton() {
+        return saveButton;
+    }
 
-    public JButton getsaveButton() {return saveButton;}
-    public JButton getloadButton() {return loadButton;}
+    /**
+     * access button to add listener
+     *
+     * @return loadbutton
+     */
+    public JButton getloadButton() {
+        return loadButton;
+    }
 
-    public ArrayList<Message> getDisplayedMessages() {return new ArrayList<>(displayedMessages);}
-    public ArrayList<String> getDisplayedOnlineUsers() {return new ArrayList<>(displayedOnlineUsers);}
+    /**
+     * gets the messages to be displayed
+     *
+     * @return message array
+     */
+    public ArrayList<Message> getDisplayedMessages() {
+        return new ArrayList<>(displayedMessages);
+    }
 
-    // Updates Displayed Messages and OnlineUsers ---------------------------------------------------
-    public void updateDisplayedMessages () { displayedMessages = serverModel.getChatLog();}
-    public void updateDisplayedOnlineUsers () {displayedOnlineUsers = serverModel.getOnlineUsers();}
+    /**
+     * Gets the list of online users
+     *
+     * @return online users
+     */
+    public ArrayList<String> getDisplayedOnlineUsers() {
+        return new ArrayList<>(displayedOnlineUsers);
+    }
 
+    /**
+     * updates the displaymessage array
+     */
+    public void updateDisplayedMessages() {
+        displayedMessages = ServerModel.getChatLog();
+    }
+
+    /**
+     * updates displayed online user list.
+     */
+    public void updateDisplayedOnlineUsers() {
+        displayedOnlineUsers = ServerModel.getOnlineUsers();
+    }
 
 }

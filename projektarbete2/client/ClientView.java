@@ -2,18 +2,17 @@ package client;
 
 import javax.swing.*;
 import java.util.ArrayList;
+
 import message.Message;
 
 /**
  * The ClientView displays the information that the client gets from the server in the chat window.
  *
  * @author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
- *
  * @version 1.0 3/2/2022
  */
 
 public class ClientView {
-
 
     private JPanel mainPanel;
     private JPanel ConnectPanel;
@@ -50,12 +49,12 @@ public class ClientView {
 
 
     /**
-     * Provides the ClientView with a clientModel so that it can display data and fetch data from the clientModel.
+     * Class constructor that provides the ClientView with a clientModel so that it can display data and fetch data from the clientModel.
      * Makes the text area which displays all the messages uneditable.
      * Sets lineWrap to true so that long messages will break on the chat window instead of creating a horizontal scroll policy.
      */
 
-    public ClientView(){
+    public ClientView() {
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea1.setEditable(false);
@@ -69,58 +68,195 @@ public class ClientView {
 
     }
 
-    public void setTime(boolean t){
-
-        time=t;
+    /**
+     * method to set the message time visible or not
+     *
+     * @param t boolean to set time
+     */
+    public void setTime(boolean t) {
+        time = t;
     }
 
     /**
      * Displays all the messages in the client chatlog in the client chat window.
      */
-    public void displayMessage(){
-        ArrayList<Message> chatLog = clientModel.getChatLog(); //reads the message that server has sent to clients inputstream and displays it in the window.
+    public void displayMessage() {
+        ArrayList<Message> chatLog = clientModel.getChatLog();
         textArea.setText("");
-        for (Message msg : chatLog){
-            if(time==true){
+        for (Message msg : chatLog) {
+            if (time == true) {
                 textArea.append(msg.toString() + "\n");
-            }else {
-                String m= msg.toString().substring(msg.toString().indexOf(">")+1);
+            } else {
+                String m = msg.toString().substring(msg.toString().indexOf(">") + 1);
                 textArea.append(m + "\n");
             }
 
         }
     }
 
+    /**
+     * reads the online users message that server has sent to
+     * clients input-stream and displays it in the  window.
+     */
     public void displayUsers() {
-        ArrayList<String> users = clientModel.getOnlineUsers(); //reads the message that server has sent to clients inputstream and displays it in the window.
+        ArrayList<String> users = clientModel.getOnlineUsers();
         textArea1.setText("");
-        for (String user : users){
-            textArea1.append(user.toString() + "\n");
+        for (String user : users) {
+            textArea1.append(user + "\n");
         }
     }
 
+    /**
+     * method for accessing the mainJpanel
+     *
+     * @return mainPanel
+     */
+    public JPanel getmainPanel() {
+        return this.mainPanel;
+    }
 
+    /**
+     * for accessing the  textfield
+     *
+     * @return formattedTextField
+     */
+    public JFormattedTextField getformattedTextField() {
+        return this.formattedTextField;
+    }
 
+    /**
+     * used for accessing the button when adding listener to the button
+     *
+     * @return a button
+     */
+    public JButton getconnectButton() {
+        return this.connectButton;
+    }
 
-    // Getter methods for Private Instance Variables
-    public JPanel getmainPanel(){return this.mainPanel;}
-    public JPanel getConnectPanel() {return this.ConnectPanel;}
-    public JPanel getChatPanel() {return this.ChatPanel;}
-    public JFormattedTextField getformattedTextField() {return this.formattedTextField;}
-    public JButton getconnectButton() {return this.connectButton;}
-    public JTextField getmessageField() {return this.messageField;}
-    public JButton getsendMessageButton() {return this.sendMessageButton;}
-    public JLabel getconnectionError() {return this.connectionError;}
-    public JTextArea gettextArea(){return this.textArea;}
-    public JMenuItem getColorItem1(){return this.colorItem1;}
-    public JMenuItem getColorItem2(){return this.colorItem2;}
-    public JMenuItem getColorItem3(){return this.colorItem3;}
-    public JMenuItem getOnItemTS(){return this.onItemTS;}
-    public JMenuItem getOffItemTS(){return this.offItemTS;}
-    public JMenuItem getSoundItemOff(){return this.soundItemOff;}
-    public JMenuItem getSoundItemOn(){return this.soundItemOn;}
-    public JMenuItem getAboutItem(){return this.aboutItem;}
-    public JMenuItem getHelpItem(){return this.helpItem;}
-    public void setClientModel(ClientModel clientmodel) {this.clientModel = clientmodel;}
+    /**
+     * used to access Textfield to get the users input
+     *
+     * @return messageField
+     */
+    public JTextField getmessageField() {
+        return this.messageField;
+    }
+
+    /**
+     * used to access button when adding listener to send user message
+     *
+     * @return button
+     */
+    public JButton getsendMessageButton() {
+        return this.sendMessageButton;
+    }
+
+    /**
+     * accesses the label used to send message notice to user
+     *
+     * @return a label
+     */
+    public JLabel getconnectionError() {
+        return this.connectionError;
+    }
+
+    /**
+     * used to access the textarea for displaying received messages
+     *
+     * @return textarea
+     */
+    public JTextArea gettextArea() {
+        return this.textArea;
+    }
+
+    /**
+     * used to access menu for changing the color of the textarea.
+     *
+     * @return colorItem
+     */
+    public JMenuItem getColorItem1() {
+        return this.colorItem1;
+    }
+
+    /**
+     * used to access menu for changing the color of the textarea.
+     *
+     * @return colorItem
+     */
+    public JMenuItem getColorItem2() {
+        return this.colorItem2;
+    }
+
+    /**
+     * used to access menu for changing the color of the textarea.
+     *
+     * @return colorItem
+     */
+    public JMenuItem getColorItem3() {
+        return this.colorItem3;
+    }
+
+    /**
+     * accesses menu when setting timestamp visibility
+     *
+     * @return menu item
+     */
+    public JMenuItem getOnItemTS() {
+        return this.onItemTS;
+    }
+
+    /**
+     * accesses menu when setting off timestamp visibility
+     *
+     * @return menu item
+     */
+    public JMenuItem getOffItemTS() {
+        return this.offItemTS;
+    }
+
+    /**
+     * accesses menu when setting off sound notification
+     *
+     * @return menu item
+     */
+    public JMenuItem getSoundItemOff() {
+        return this.soundItemOff;
+    }
+
+    /**
+     * accesses menu when setting on sound notification
+     *
+     * @return menu item
+     */
+    public JMenuItem getSoundItemOn() {
+        return this.soundItemOn;
+    }
+
+    /**
+     * accesses the menu when adding what the project is about
+     *
+     * @return aboutItem
+     */
+    public JMenuItem getAboutItem() {
+        return this.aboutItem;
+    }
+
+    /**
+     * accesses the menu when adding the help option
+     *
+     * @return HelpItem
+     */
+    public JMenuItem getHelpItem() {
+        return this.helpItem;
+    }
+
+    /**
+     * method for initialising the clientmodel
+     *
+     * @param clientmodel initialises clientmodel
+     */
+    public void setClientModel(ClientModel clientmodel) {
+        this.clientModel = clientmodel;
+    }
 
 }

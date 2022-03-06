@@ -12,16 +12,25 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-//handles button presses and things that affect the model.
-//it should not display messages in reality, that should be handled by the view.
 
+/**
+ * ClientController class handles the Listeners for the clientview.
+ *
+ * @Author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
+ *
+ * @version 1.0 3/2/2022
+ */
 public class ClientController extends JFrame {
 
-    private ClientModel clientModel;
-    private ClientView clientView;
-    private CardLayout cl; //denna layout tillåter att man går från connect window till chat window på ett smidigt sätt
+    private final ClientModel clientModel;
+    private final ClientView clientView;
+    private final CardLayout cl;
     public boolean sound;
 
+
+    /**
+     * Class constructor that adds listeners to the components in the Clientview.
+     */
     public ClientController() {
         super("client");
 
@@ -32,46 +41,38 @@ public class ClientController extends JFrame {
 
         cl = (CardLayout) clientView.getmainPanel().getLayout();
 
-        sound=true;
+        sound = true;
 
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
 
-
-
-        //Turn on and off Sounds
         clientView.getSoundItemOn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getSoundItemOn()){
-                    sound=true;
+                if (e.getSource() == clientView.getSoundItemOn()) {
+                    sound = true;
                     clientModel.setsound(true);
                 }
-
             }
         });
-
 
         clientView.getSoundItemOff().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getSoundItemOff()){
-                    sound=false;
+                if (e.getSource() == clientView.getSoundItemOff()) {
+                    sound = false;
                     clientModel.setsound(false);
                 }
 
             }
         });
 
-
-
-        //Change Colors White, Blue and Yellow
         clientView.getColorItem1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getColorItem1()){
-                    clientView.gettextArea().setBackground(new Color(124,172,245));
+                if (e.getSource() == clientView.getColorItem1()) {
+                    clientView.gettextArea().setBackground(new Color(124, 172, 245));
                 }
 
             }
@@ -80,8 +81,8 @@ public class ClientController extends JFrame {
         clientView.getColorItem2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getColorItem2()){
-                    clientView.gettextArea().setBackground(new Color(242,232,169));
+                if (e.getSource() == clientView.getColorItem2()) {
+                    clientView.gettextArea().setBackground(new Color(242, 232, 169));
                 }
 
             }
@@ -90,19 +91,17 @@ public class ClientController extends JFrame {
         clientView.getColorItem3().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getColorItem3()){
-                    clientView.gettextArea().setBackground(new Color(255,255,255));
+                if (e.getSource() == clientView.getColorItem3()) {
+                    clientView.gettextArea().setBackground(new Color(255, 255, 255));
                 }
 
             }
         });
 
-
-        //TimeStamp on and off
         clientView.getOnItemTS().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getOnItemTS()){
+                if (e.getSource() == clientView.getOnItemTS()) {
 
                     clientView.setTime(true);
                 }
@@ -112,20 +111,18 @@ public class ClientController extends JFrame {
         clientView.getOffItemTS().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getOffItemTS()){
+                if (e.getSource() == clientView.getOffItemTS()) {
                     clientView.setTime(false);
                 }
             }
         });
 
-
-        //Help menu and about menu
         clientView.getAboutItem().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getAboutItem()){
-                    String aboutMsg="Simple Chat Application with Java\nContributers:\nMirco Ghadir\nRamza Josoph\nValeria Nafuna\nZakariya Omar\nDAT055 2022-03-07";
-                    String title="About";
+                if (e.getSource() == clientView.getAboutItem()) {
+                    String aboutMsg = "Simple Chat Application with Java\nContributers:\nMirco Ghadir\nRamza Josoph\nValeria Nafuna\nZakariya Omar\nDAT055 2022-03-07";
+                    String title = "About";
                     JOptionPane.showMessageDialog(null, aboutMsg, title, JOptionPane.PLAIN_MESSAGE);
                 }
             }
@@ -134,8 +131,8 @@ public class ClientController extends JFrame {
         clientView.getHelpItem().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==clientView.getHelpItem()){
-                    Desktop d= Desktop.getDesktop();
+                if (e.getSource() == clientView.getHelpItem()) {
+                    Desktop d = Desktop.getDesktop();
                     try {
                         d.browse(new URI("https://github.com/ksedix/Java-Chat-Application/blob/main/README.md"));
                     } catch (IOException ex) {
@@ -148,31 +145,24 @@ public class ClientController extends JFrame {
             }
         });
 
-
         clientView.getconnectButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //retry the connection for the clientModel
-                if (clientModel.getSocket() == null){
+                if (clientModel.getSocket() == null) {
                     clientModel.connectToServer();
                 }
 
-
-
-                //pass the updated clientModel to the clientView
                 clientView.setClientModel(clientModel);
 
-
-
-                if (clientModel.getSocket()==null){
+                if (clientModel.getSocket() == null) {
                     clientView.getconnectionError().setText("Server is not running.");
                 } else if (clientView.getformattedTextField().getText().equals("")) {
                     clientView.getconnectionError().setText("Please enter a valid username.");
 
                     String userdirectory = System.getProperty("user.dir");
                     System.out.println(userdirectory);
-                    if (sound==true) {
+                    if (sound == true) {
                         AudioInputStream audio = null;
 
                         try {
@@ -197,7 +187,7 @@ public class ClientController extends JFrame {
                         }
                         clip.start();
                         try {
-                            Thread.currentThread().sleep(1000);
+                            Thread.sleep(1000);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
@@ -206,11 +196,11 @@ public class ClientController extends JFrame {
                     }
 
 
-                } else if (clientView.getformattedTextField().getText().length()>15){
+                } else if (clientView.getformattedTextField().getText().length() > 15) {
                     clientView.getconnectionError().setText("Username can't be longer than 15 characters");
                     String userdirectory = System.getProperty("user.dir");
                     System.out.println(userdirectory);
-                    if (sound==true) {
+                    if (sound == true) {
                         AudioInputStream audio = null;
 
                         try {
@@ -235,7 +225,7 @@ public class ClientController extends JFrame {
                         }
                         clip.start();
                         try {
-                            Thread.currentThread().sleep(1000);
+                            Thread.sleep(1000);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
@@ -252,7 +242,7 @@ public class ClientController extends JFrame {
 
                     String userdirectory = System.getProperty("user.dir");
                     System.out.println(userdirectory);
-                    if (sound==true) {
+                    if (sound == true) {
                         AudioInputStream audio = null;
 
                         try {
@@ -277,7 +267,7 @@ public class ClientController extends JFrame {
                         }
                         clip.start();
                         try {
-                            Thread.currentThread().sleep(1000);
+                            Thread.sleep(1000);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
@@ -290,13 +280,10 @@ public class ClientController extends JFrame {
         });
 
 
-
         clientView.getsendMessageButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-                //write from the client to the server when the send button is pressed
                 clientModel.sendMessage(clientModel.getUsername() + ": " + clientView.getmessageField().getText());
                 clientView.getmessageField().setText("");
 
@@ -308,11 +295,9 @@ public class ClientController extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                int input = JOptionPane.showConfirmDialog(null,"Are you sure you want to close the client?");
-                if(input == JOptionPane.YES_NO_OPTION) {
-
-                    //this allows you to close the window if server is not running. it wont sendMessage.
-                    if (clientModel.getSocket()!=null) {
+                int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to close the client?");
+                if (input == JOptionPane.YES_NO_OPTION) {
+                    if (clientModel.getSocket() != null) {
                         clientModel.sendMessage("User " + clientModel.getUsername() + " disconnected from the server");
                     }
 
@@ -323,24 +308,29 @@ public class ClientController extends JFrame {
 
 
         });
+    }
 
-
-
+    public static void main(String[] args) {
+        ClientController clientController = new ClientController();
+        clientController.listenForMessage();
 
     }
 
 
-    public void listenForMessage(){
+    /**
+     * This method is the main run method for the client, it has a continual loop for the client to
+     * continuously read the incoming messages and get a sound notification.
+     */
+    public void listenForMessage() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
 
-                    if(clientModel.readMessage()) {
+                    if (clientModel.readMessage()) {
                         clientView.displayMessage();
                         String userdirectory = System.getProperty("user.dir");
-                        System.out.println(userdirectory);
-                        if (sound==true) {
+                        if (sound == true) {
                             AudioInputStream audio = null;
 
                             try {
@@ -365,7 +355,7 @@ public class ClientController extends JFrame {
                             }
                             clip.start();
                             try {
-                                Thread.currentThread().sleep(1000);
+                                Thread.sleep(1000);
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
                             }
@@ -378,15 +368,6 @@ public class ClientController extends JFrame {
                 }
             }
         }).start();
-    }
-
-
-
-
-    public static void main (String[] args){
-        ClientController clientController = new ClientController();
-        clientController.listenForMessage();
-
     }
 
 }

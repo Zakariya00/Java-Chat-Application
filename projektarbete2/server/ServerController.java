@@ -7,110 +7,102 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
+/**
+ * ServerConroller class for handlng listeners to the serverview
+ *
+ * @version 1.0 3/2/2022
+ * @Author Mirco Ghadri, Ramza Josoph, Valeria Nafuna, Zakariya Omar, "Group 3"
+ */
 public class ServerController extends JFrame {
 
+    private final ServerModel serverModel;
+    private final ServerView serverView;
 
-    private ServerModel serverModel;
-    private ServerView serverView;
-    //private ChatHistory chathistory;
-
-    public ServerController(ServerModel serverModel){
+    /**
+     * class constructor that adds listeners to the serverview
+     *
+     * @param serverModel initialisng the servermodel
+     */
+    public ServerController(ServerModel serverModel) {
 
         super("Server");
         this.serverModel = serverModel;
         this.serverView = new ServerView(serverModel);
-        //this.chathistory = new ChatHistory(serverModel);
 
-        serverView.displayMessages(); //------------------------------------------------
+        serverView.displayMessages();
         add(serverView.getServerPanel());
 
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
-
-        // Save Button  -----------
-        serverView.getsaveButton().addActionListener(new ActionListener()  {
+        serverView.getsaveButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 serverModel.save();
             }
         });
 
-        // Load Button
-        serverView.getloadButton().addActionListener(new ActionListener()  {
-        public void actionPerformed(ActionEvent e) {
-            serverModel.load();
-            serverModel.sendMessages();
-        }
-    });
+        serverView.getloadButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                serverModel.load();
+                serverModel.sendMessages();
+            }
+        });
 
-
-
-        // Server shutdown button opens JOptionPane ----------------------------------------
         serverView.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //implement server function to no notiffy clients of shutdown and disconnect before shutdown
-
 
                 int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to shutdown the Server?");
                 if (input == JOptionPane.YES_NO_OPTION) {
-                    System.out.println("Server Shutdown");
+                    serverModel.serverShutDown();
+                    System.exit(0);
+                }
+            }
+        });
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to shutdown the Server?");
+                if (input == JOptionPane.YES_NO_OPTION) {
                     serverModel.serverShutDown();
                     System.exit(0);
                 }
             }
         });
 
-        //JOptionPane if window is closed ----------------------------------------------------
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-               int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to shutdown the Server?");
-               if(input == JOptionPane.YES_NO_OPTION) {
-                   serverModel.serverShutDown();
-                   System.out.println("Server Shutdown");
-                   System.exit(0);
-               }
-            }
-        });
-
     }
 
+    public static void main(String[] args) {
 
-    //Automatically update Server Gui for new messages and Users -----------------------------
-    public void serverlistenForMessage(){
+        ServerModel serverModel = new ServerModel();
+        ServerController serverController = new ServerController(serverModel);
+        serverController.serverlistenForMessage();
+        serverModel.startServer();
+    }
+
+    /**
+     * Automatically update Server Gui for new messages and Users
+     */
+    public void serverlistenForMessage() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
 
-                   if (serverView.getDisplayedOnlineUsers().size() != serverModel.getOnlineUsers().size()) {
-                       serverView.updateDisplayedOnlineUsers();
-                       serverView.displayUsers();
+                    if (serverView.getDisplayedOnlineUsers().size() != ServerModel.getOnlineUsers().size()) {
+                        serverView.updateDisplayedOnlineUsers();
+                        serverView.displayUsers();
 
+                    }
 
-                   }
-
-                    if (serverView.getDisplayedMessages().size() != serverModel.getChatLog().size()) {
-                        serverView.updateDisplayedMessages ();
+                    if (serverView.getDisplayedMessages().size() != ServerModel.getChatLog().size()) {
+                        serverView.updateDisplayedMessages();
                         serverView.displayMessages();
                     }
                 }
             }
         }).start();
     }
-
-
-
-    public static void main(String[] args) {
-
-        ServerModel serverModel = new ServerModel();
-        ServerController serverController = new ServerController(serverModel);
-        serverController.serverlistenForMessage(); // --------------------------------------------
-        //den fastnar i servermodel while loop. du måste ge den efteråt
-        serverModel.startServer();
-    }
-
 
 }
